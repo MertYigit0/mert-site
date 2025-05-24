@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mert - Android Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="light">
+  <!-- Tema butonu -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i id="theme-icon" class="fas fa-sun"></i>
+  </div>
+
+  <div class="emulator-frame">
+    <div class="emulator-notch"></div>
+    <div class="emulator-content">
+      <div class="status-bar">
+        <div class="status-bar-left">
+          <i class="fas fa-signal"></i>
+          <i class="fas fa-wifi"></i>
+        </div>
+        <div class="status-bar-center">12:00</div>
+        <div class="status-bar-right">
+          <i class="fas fa-battery-full"></i>
+        </div>
+      </div>
+
+      <div class="app-content">
+        <div class="profile-section md3-surface">
+          <div class="profile-header">
+            <div class="profile-container">
+              <img src="photo.jpg" alt="Profil Fotoğrafı" class="profile-img front" />
+              <img src="hello-android.gif" alt="Hello Android" class="profile-img back light-mode-back" />
+              <img src="M1_C0_A1_P3.png" alt="Dark Mode Profile" class="profile-img back dark-mode-back" />
+            </div>
+            <h1 class="md3-headline">Mert Yiğit</h1>
+            <div class="typing-container">
+              <span class="dynamic-text"></span>
+            </div>
+          </div>
+          <p class="md3-body">Android geliştiricisiyim. Spring Boot ile backend öğreniyorum. Yeni iş fırsatlarına açığım.</p>
+        </div>
+
+        <div class="social-links md3-surface">
+          <div class="app-grid">
+            <a href="https://github.com/MertYigit0" target="_blank" class="app-icon">
+              <div class="icon-wrapper">
+                <i class="fab fa-github"></i>
+              </div>
+              <span class="app-name">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/mertyigit0/" target="_blank" class="app-icon">
+              <div class="icon-wrapper">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <span class="app-name">LinkedIn</span>
+            </a>
+            <a href="https://medium.com/@mertyigit0" target="_blank" class="app-icon">
+              <div class="icon-wrapper">
+                <img src="medium.png" alt="Medium" class="medium-icon">
+              </div>
+              <span class="app-name">Medium</span>
+            </a>
+            <a href="https://play.google.com/store/apps/developer?id=MYStudio&hl=en_US" target="_blank" class="app-icon">
+              <div class="icon-wrapper">
+                <i class="fab fa-google-play"></i>
+              </div>
+              <span class="app-name">Play Store</span>
+            </a>
+            <a href="mailto:mertyigit.dev@gmail.com" class="app-icon">
+              <div class="icon-wrapper">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span class="app-name">Mail</span>
+            </a>
+            <a href="mertcv.pdf" class="app-icon" target="_blank">
+              <div class="icon-wrapper">
+                <img src="cv.png" alt="CV" class="medium-icon">
+              </div>
+              <span class="app-name">CV</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="skills-section md3-surface">
+          <h2 class="md3-title">Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-item md3-card">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIzMy4zNCUiIHgyPSI4Ni45JSIgeTE9IjguODYlIiB5Mj0iNzguNDElIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMDk1RDUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDk1RDUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjI2LjA3JSIgeDI9IjgxLjc1JSIgeTE9IjQuOTQlIiB5Mj0iNzUuNzglIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGODg5MDkiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGODg5MDkiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDYwaDYwTDAgMHoiLz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNMCAwaDYwTDAgNjB6Ii8+PC9zdmc+" alt="Kotlin" class="skill-icon">
+              <span class="md3-label">Kotlin</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fab fa-java"></i>
+              <span class="md3-label">Java</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fab fa-android"></i>
+              <span class="md3-label">Android Development</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-puzzle-piece"></i>
+              <span class="md3-label">Jetpack Libraries</span>
+            </div>
+            <div class="skill-item md3-card">
+              <img src="OIP.jpg" alt="Jetpack Compose" class="skill-icon">
+              <span class="md3-label">Jetpack Compose</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-code"></i>
+              <span class="md3-label">XML</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-layer-group"></i>
+              <span class="md3-label">MVVM</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fab fa-git-alt"></i>
+              <span class="md3-label">Git</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-fire"></i>
+              <span class="md3-label">Firebase</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-database"></i>
+              <span class="md3-label">Room</span>
+            </div>
+            <div class="skill-item md3-card">
+              <i class="fas fa-network-wired"></i>
+              <span class="md3-label">Retrofit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects-section md3-surface">
+          <h2 class="md3-title">Projelerim</h2>
+          <div class="project-grid">
+            <a href="https://github.com/MertYigit0/SecretSantaAI" target="_blank" class="project-card">
+              <img src="secretsanta.png" alt="Secret Santa AI" />
+              <h3>SecretSantaAI</h3>
+              <div class="project-info">
+                <h3 class="md3-subtitle">SecretSantaAI</h3>
+                <p class="md3-body">Yapay zekâ destekli yılbaşı çekiliş uygulaması...</p>
+              </div>
+            </a>
+            
+            <a href="https://play.google.com/store/apps/details?id=com.mertyigit0.vocabcards&hl=en_US" target="_blank" class="project-card">
+              <img src="vocabcards.png" alt="VocabCards" />
+              <h3>VocabCards</h3>
+              <div class="project-info">
+                <h3 class="md3-subtitle">VocabCards</h3>
+                <p class="md3-body">Kelime ezberleme uygulaması. Kart mantığıyla çalışır...</p>
+              </div>
+            </a>
+            
+            <a href="https://github.com/MertYigit0/BudgetManager" target="_blank" class="project-card">
+              <img src="budgetapp.png" alt="BudgetManager" />
+              <h3>BudgetManager</h3>
+              <div class="project-info">
+                <h3 class="md3-subtitle">BudgetManager</h3>
+                <p class="md3-body">Kişisel harcamaları kolayca takip edebileceğin basit ve kullanıcı dostu bir bütçe uygulaması. Grafik desteği ve kategoriye göre ayrım içerir.</p>
+              </div>
+            </a>
+            
+            <a href="https://github.com/MertYigit0/RemotePCController" target="_blank" class="project-card">
+              <img src="remotecontrol.png" alt="Remote PC Controller" />
+              <h3>RemotePC</h3>
+              <div class="project-info">
+                <h3 class="md3-subtitle">RemotePCController</h3>
+                <p class="md3-body">Android cihazdan bilgisayarı uzaktan kontrol etmeyi sağlayan uygulama. Komut gönderme, ekran kapatma, ses açma gibi özellikler içerir.</p>
+              </div>
+            </a>
+            
+            <a href="https://github.com/MertYigit0/Space-Escape-Android-Mobile-Game" target="_blank" class="project-card">
+              <img src="space.png" alt="Space Escape" />
+              <h3>Space Escape</h3>
+              <div class="project-info">
+                <h3 class="md3-subtitle">Space Escape</h3>
+                <p class="md3-body">Basit ama bağımlılık yapan bir uzay temalı mobil arcade oyunu. Jetpack Compose ile geliştirilmiştir. Skor tutma ve zorluk sistemine sahiptir.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navigation-bar">
+        <button class="nav-button active" onclick="scrollToSection('profile-section')">
+          <i class="fas fa-user"></i>
+        </button>
+        <button class="nav-button" onclick="scrollToSection('skills-section')">
+          <i class="fas fa-code"></i>
+        </button>
+        <button class="nav-button" onclick="scrollToSection('projects-section')">
+          <i class="fas fa-project-diagram"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById("theme-icon");
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+      if (body.classList.contains("dark")) {
+        icon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+    }
+
+    const titles = ["Android Developer", "Computer Engineer"];
+    let currentIndex = 0;
+    const dynamicText = document.querySelector('.dynamic-text');
+
+    function updateText() {
+      dynamicText.classList.add('flip-out');
+      
+      setTimeout(() => {
+        dynamicText.textContent = titles[currentIndex];
+        dynamicText.dataset.title = titles[currentIndex];
+        dynamicText.classList.remove('flip-out');
+        dynamicText.classList.add('flip-in');
+        currentIndex = (currentIndex + 1) % titles.length;
+        
+        setTimeout(() => {
+          dynamicText.classList.remove('flip-in');
+        }, 800);
+      }, 800);
+    }
+
+    function scrollToSection(sectionId) {
+      const section = document.querySelector('.' + sectionId);
+      section.scrollIntoView({ behavior: 'smooth' });
+      
+      // Update active button
+      document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    // Update time in status bar
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+      document.querySelector('.status-bar-center').textContent = timeString;
+    }
+
+    updateText();
+    setInterval(updateText, 6000);
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>

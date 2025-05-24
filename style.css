@@ -1,0 +1,687 @@
+/* Material Design 3 Variables */
+:root {
+  --md-sys-color-primary: #006C51;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #89F8D1;
+  --md-sys-color-on-primary-container: #002116;
+  --md-sys-color-secondary: #4C6358;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #CEE9DB;
+  --md-sys-color-on-secondary-container: #092017;
+  --md-sys-color-tertiary: #3E6374;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #C2E8FC;
+  --md-sys-color-on-tertiary-container: #001F2A;
+  --md-sys-color-surface: #F8FAF7;
+  --md-sys-color-on-surface: #191C1B;
+  --md-sys-color-surface-variant: #DBE5DE;
+  --md-sys-color-on-surface-variant: #404944;
+  
+  /* Updated Dark theme colors for better readability */
+  --md-sys-color-dark-surface: #1E1E2E;
+  --md-sys-color-dark-on-surface: #E1E3E0;
+  --md-sys-color-dark-surface-variant: #313244;
+  --md-sys-color-dark-on-surface-variant: #BFC9C2;
+  --md-sys-color-dark-primary: #7EE8C7;
+  --md-sys-color-dark-on-primary: #00382A;
+  --md-sys-color-dark-primary-container: #005140;
+  --md-sys-color-dark-on-primary-container: #89F8D1;
+  --md-sys-color-dark-secondary: #B3CCBF;
+  --md-sys-color-dark-on-secondary: #243530;
+  --md-sys-color-dark-secondary-container: #3B4B45;
+  --md-sys-color-dark-on-secondary-container: #CEE9DB;
+  
+  /* Animation durations */
+  --md-sys-motion-duration-short: 100ms;
+  --md-sys-motion-duration-medium: 200ms;
+  --md-sys-motion-duration-long: 500ms;
+  
+  /* Elevation values */
+  --md-sys-elevation-level1: 0px 1px 2px rgba(0,0,0,0.3), 0px 1px 3px 1px rgba(0,0,0,0.15);
+  --md-sys-elevation-level2: 0px 2px 6px rgba(0,0,0,0.15), 0px 1px 2px rgba(0,0,0,0.3);
+  --md-sys-elevation-level3: 0px 4px 8px 3px rgba(0,0,0,0.15), 0px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  transition: background-color var(--md-sys-motion-duration-long),
+              color var(--md-sys-motion-duration-long);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+body.dark {
+  --md-sys-color-primary: var(--md-sys-color-dark-primary);
+  --md-sys-color-on-primary: var(--md-sys-color-dark-on-primary);
+  --md-sys-color-primary-container: var(--md-sys-color-dark-primary-container);
+  --md-sys-color-on-primary-container: var(--md-sys-color-dark-on-primary-container);
+  --md-sys-color-secondary: var(--md-sys-color-dark-secondary);
+  --md-sys-color-on-secondary: var(--md-sys-color-dark-on-secondary);
+  --md-sys-color-secondary-container: var(--md-sys-color-dark-secondary-container);
+  --md-sys-color-on-secondary-container: var(--md-sys-color-dark-on-secondary-container);
+  --md-sys-color-surface: var(--md-sys-color-dark-surface);
+  --md-sys-color-on-surface: var(--md-sys-color-dark-on-surface);
+  --md-sys-color-surface-variant: var(--md-sys-color-dark-surface-variant);
+  --md-sys-color-on-surface-variant: var(--md-sys-color-dark-on-surface-variant);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Emulator Frame */
+.emulator-frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 90vh;
+  background: var(--md-sys-color-surface-variant);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: var(--md-sys-elevation-level3);
+  border: 2px solid var(--md-sys-color-outline);
+}
+
+.emulator-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 25px;
+  background: var(--md-sys-color-surface);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 2;
+}
+
+.emulator-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-size: 14px;
+  height: 24px;
+}
+
+.status-bar i {
+  margin: 0 4px;
+}
+
+/* App Content */
+.app-content {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+/* Material Design 3 Components */
+.md3-surface {
+  background-color: var(--md-sys-color-surface);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.md3-card {
+  background-color: var(--md-sys-color-surface);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--md-sys-elevation-level1);
+  transition: box-shadow var(--md-sys-motion-duration-medium);
+}
+
+.md3-card:hover {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.md3-button {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  padding: 10px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color var(--md-sys-motion-duration-short);
+}
+
+.md3-button:hover {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.md3-icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+  transition: background-color var(--md-sys-motion-duration-short);
+}
+
+.md3-icon-button:hover {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+/* Typography */
+.md3-headline {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  margin: 0;
+  color: var(--md-sys-color-primary);
+}
+
+.md3-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0 0 16px 0;
+  color: var(--md-sys-color-primary);
+}
+
+.md3-subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 0 0 8px 0;
+  color: var(--md-sys-color-primary);
+}
+
+.md3-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 16px 0;
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Navigation Bar */
+.navigation-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--md-sys-color-surface);
+  padding: 12px;
+  border-top: 1px solid var(--md-sys-color-outline);
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  padding: 12px;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all var(--md-sys-motion-duration-short);
+}
+
+.nav-button.active {
+  color: var(--md-sys-color-primary);
+  background-color: var(--md-sys-color-primary-container);
+}
+
+.nav-button:hover {
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+/* Profile Section */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.profile-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transition: transform var(--md-sys-motion-duration-long);
+}
+
+.profile-img.front {
+  transform: rotateY(0deg);
+}
+
+.profile-img.back {
+  transform: rotateY(180deg);
+}
+
+.profile-container:hover .profile-img.front {
+  transform: rotateY(180deg);
+}
+
+.profile-container:hover .profile-img.back {
+  transform: rotateY(360deg);
+}
+
+/* Neon Text Effects - Light Mode */
+.light .dynamic-text[data-title="Android Developer"] {
+  color: #0D7A1C;
+  text-shadow: 0 0 2px #39FF14,
+               0 0 4px #39FF14,
+               0 0 6px #39FF14,
+               1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.light .dynamic-text[data-title="Computer Engineer"] {
+  color: #006666;
+  text-shadow: 0 0 2px #00FFFF,
+               0 0 4px #00FFFF,
+               0 0 6px #00FFFF,
+               1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+/* Neon Text Effects - Dark Mode */
+.dark .dynamic-text[data-title="Android Developer"] {
+  color: #39FF14;
+  text-shadow: 0 0 5px #39FF14,
+               0 0 10px #39FF14,
+               0 0 20px #39FF14,
+               0 0 40px #39FF14;
+  font-weight: 600;
+}
+
+.dark .dynamic-text[data-title="Computer Engineer"] {
+  color: #00FFFF;
+  text-shadow: 0 0 5px #00FFFF,
+               0 0 10px #00FFFF,
+               0 0 20px #00FFFF,
+               0 0 40px #00FFFF;
+  font-weight: 600;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.skill-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* App Icons */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: 16px;
+  padding: 8px;
+  justify-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 8px;
+  transition: transform var(--md-sys-motion-duration-medium);
+  width: 72px;
+}
+
+.app-icon:hover {
+  transform: scale(1.05);
+}
+
+.app-icon:active {
+  transform: scale(0.95);
+}
+
+.icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--md-sys-color-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--md-sys-elevation-level2);
+  transition: background-color var(--md-sys-motion-duration-medium);
+}
+
+.icon-wrapper i.fa-github {
+  color: #333;
+  font-size: 32px;
+}
+
+.icon-wrapper i.fa-linkedin {
+  color: #0077B5;
+  font-size: 32px;
+}
+
+.icon-wrapper i.fa-google-play {
+  color: #01875f;
+  font-size: 32px;
+}
+
+.icon-wrapper i.fa-envelope {
+  color: #EA4335;
+  font-size: 32px;
+}
+
+.icon-wrapper img.medium-icon,
+.icon-wrapper img.cv-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: transform var(--md-sys-motion-duration-medium);
+}
+
+.icon-wrapper img.medium-icon:hover,
+.icon-wrapper img.cv-icon:hover {
+  transform: scale(1.1);
+}
+
+.icon-wrapper i.fa-file-pdf {
+  color: #FF0000;
+}
+
+.app-name {
+  font-size: 12px;
+  color: var(--md-sys-color-on-surface);
+  text-align: center;
+  font-weight: 500;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Project Cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 24px;
+  padding: 16px;
+  position: relative;
+}
+
+.project-card {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.project-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: var(--md-sys-elevation-level2);
+  transition: transform var(--md-sys-motion-duration-medium);
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-card:active img {
+  transform: scale(0.95);
+}
+
+.project-info {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--md-sys-color-surface);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--md-sys-elevation-level3);
+  width: 280px;
+  max-width: 90%;
+  z-index: 10;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* Container for emulator-relative positioning */
+.emulator-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-content {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+/* Ensure popup stays within emulator bounds */
+.project-card:hover .project-info {
+  display: block;
+  animation: popup-fade-in var(--md-sys-motion-duration-medium) ease-out forwards;
+}
+
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .project-info {
+    width: 240px;
+    padding: 12px;
+  }
+  
+  .project-info h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .project-info p {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Remove the overlay */
+.project-card:hover::before {
+  display: none;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: var(--md-sys-color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--md-sys-elevation-level2);
+  z-index: 1000;
+  color: var(--md-sys-color-primary);
+}
+
+/* Animations */
+.typing-container {
+  min-height: 32px;
+  margin: 8px 0 16px;
+}
+
+.dynamic-text {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+}
+
+.dynamic-text.flip-out {
+  animation: flipOut var(--md-sys-motion-duration-medium) ease-out forwards;
+}
+
+.dynamic-text.flip-in {
+  animation: flipIn var(--md-sys-motion-duration-medium) ease-in forwards;
+}
+
+@keyframes flipOut {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  100% { transform: rotateX(-90deg); opacity: 0; }
+}
+
+@keyframes flipIn {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .emulator-frame {
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  
+  .project-card {
+    flex-direction: column;
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* Dark mode icon adjustments */
+body.dark .icon-wrapper {
+  background: var(--md-sys-color-surface-variant);
+}
+
+body.dark .icon-wrapper i.fa-github {
+  color: #f0f6fc;
+}
+
+body.dark .icon-wrapper i.fa-linkedin {
+  color: #0a66c2;
+}
+
+body.dark .icon-wrapper i.fa-google-play {
+  color: #00c853;
+}
+
+body.dark .icon-wrapper i.fa-envelope {
+  color: #ea4335;
+}
+
+body.dark .icon-wrapper i.fa-file-pdf {
+  color: #ff5252;
+}
+
+/* Ensure popups are contained within emulator */
+.project-info {
+  max-height: 80%;
+  overflow-y: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--md-sys-color-primary);
+  font-size: 28px;
+  font-weight: 500;
+}
+
