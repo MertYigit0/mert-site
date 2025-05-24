@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="light">
+<body class="dark">
   <div class="emulator-frame">
     <div class="emulator-notch"></div>
     <div class="emulator-content">
@@ -22,7 +22,7 @@
         <div class="status-bar-right">
           <i class="fas fa-battery-full"></i>
           <div class="theme-toggle" onclick="toggleTheme()">
-            <i id="theme-icon" class="fas fa-sun"></i>
+            <i id="theme-icon" class="fas fa-moon"></i>
           </div>
         </div>
       </div>
@@ -32,15 +32,15 @@
           <div class="profile-header">
             <div class="profile-container">
               <img src="photo.jpg" alt="Profil Fotoğrafı" class="profile-img front" />
-              <img src="hello-android.gif" alt="Hello Android" class="profile-img back light-mode-back" />
-              <img src="M1_C0_A1_P3.png" alt="Dark Mode Profile" class="profile-img back dark-mode-back" />
+              <img src="M1_C0_A1_P3.png" alt="Dark Mode Profile" class="profile-img back light-mode-back" />
+              <img src="hello-android.gif" alt="Hello Android" class="profile-img back dark-mode-back" />
             </div>
             <h1 class="md3-headline">Mert Yiğit</h1>
             <div class="typing-container">
               <span class="dynamic-text"></span>
             </div>
           </div>
-          <p class="md3-body">Android geliştiricisiyim. Spring Boot ile backend öğreniyorum. Yeni iş fırsatlarına açığım.</p>
+          <p class="md3-body">Android geliştiricisiyim, yaratıcı mobil uygulamalar yapıyorum. Yeni fırsatlara ve tekliflere açığım.</p>
         </div>
 
         <div class="social-links md3-surface">
@@ -57,7 +57,7 @@
               </div>
               <span class="app-name">LinkedIn</span>
             </a>
-            <a href="https://medium.com/@mertyigit0" target="_blank" class="app-icon">
+            <a href="https://medium.com/@mertyigit148" target="_blank" class="app-icon">
               <div class="icon-wrapper">
                 <img src="medium.png" alt="Medium" class="medium-icon">
               </div>
@@ -206,9 +206,9 @@
       body.classList.toggle("dark");
       body.classList.toggle("light");
       if (body.classList.contains("dark")) {
-        icon.classList.replace("fa-sun", "fa-moon");
-      } else {
         icon.classList.replace("fa-moon", "fa-sun");
+      } else {
+        icon.classList.replace("fa-sun", "fa-moon");
       }
     }
 
