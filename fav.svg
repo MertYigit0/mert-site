@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A237E"></stop>
+      <stop offset="100%" stop-color="#3F51B5"></stop>
+    </linearGradient>
+  </defs>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="36" fill="url(#grad1)" style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));">
+    MY
+  </text>
+</svg>

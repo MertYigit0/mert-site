@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="fav.svg" />
   <title>Mert - Android Developer</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="light">
-  <!-- Tema butonu -->
-  <div class="theme-toggle" onclick="toggleTheme()">
-    <i id="theme-icon" class="fas fa-sun"></i>
-  </div>
-
   <div class="emulator-frame">
     <div class="emulator-notch"></div>
     <div class="emulator-content">
@@ -25,6 +21,9 @@
         <div class="status-bar-center">12:00</div>
         <div class="status-bar-right">
           <i class="fas fa-battery-full"></i>
+          <div class="theme-toggle" onclick="toggleTheme()">
+            <i id="theme-icon" class="fas fa-sun"></i>
+          </div>
         </div>
       </div>
 
@@ -86,7 +85,7 @@
         </div>
 
         <div class="skills-section md3-surface">
-          <h2 class="md3-title">Skills</h2>
+          <h2 class="md3-title section-header">Kullandığım Teknolojiler</h2>
           <div class="skills-grid">
             <div class="skill-item md3-card">
               <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIzMy4zNCUiIHgyPSI4Ni45JSIgeTE9IjguODYlIiB5Mj0iNzguNDElIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMDk1RDUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDk1RDUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjI2LjA3JSIgeDI9IjgxLjc1JSIgeTE9IjQuOTQlIiB5Mj0iNzUuNzglIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGODg5MDkiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGODg5MDkiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDYwaDYwTDAgMHoiLz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNMCAwaDYwTDAgNjB6Ii8+PC9zdmc+" alt="Kotlin" class="skill-icon">
@@ -136,7 +135,7 @@
         </div>
 
         <div class="projects-section md3-surface">
-          <h2 class="md3-title">Projelerim</h2>
+          <h2 class="md3-title section-header">Projelerim</h2>
           <div class="project-grid">
             <a href="https://github.com/MertYigit0/SecretSantaAI" target="_blank" class="project-card">
               <img src="secretsanta.png" alt="Secret Santa AI" />

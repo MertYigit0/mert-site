@@ -45,7 +45,7 @@
 /* Base styles */
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
   transition: background-color var(--md-sys-motion-duration-long),
@@ -118,6 +118,12 @@ body.dark {
   color: var(--md-sys-color-on-surface);
   font-size: 14px;
   height: 24px;
+}
+
+.status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .status-bar i {
@@ -567,20 +573,21 @@ body.dark {
 
 /* Theme Toggle */
 .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background: var(--md-sys-color-surface);
+  position: static;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: var(--md-sys-elevation-level2);
-  z-index: 1000;
-  color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-surface);
+  margin-left: 8px;
+}
+
+.theme-toggle:hover {
+  background: var(--md-sys-color-surface-variant);
 }
 
 /* Animations */
@@ -683,5 +690,17 @@ body.dark .icon-wrapper i.fa-file-pdf {
   color: var(--md-sys-color-primary);
   font-size: 28px;
   font-weight: 500;
+}
+
+.project-card h3 {
+  color: var(--md-sys-color-primary);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 8px 0;
+  text-align: center;
+}
+
+body.dark .project-card h3 {
+  color: var(--md-sys-color-dark-primary);
 }
 
