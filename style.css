@@ -217,13 +217,71 @@ body.dark {
   color: var(--md-sys-color-on-primary-container);
 }
 
-/* Typography */
-.md3-headline {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 40px;
+/* Typography with gradient effect */
+.gradient-title {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 46px;
   margin: 0;
-  color: var(--md-sys-color-primary);
+  background: linear-gradient(135deg, #4facfe 0%, #9b4fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 10px rgba(79, 172, 254, 0.3),
+    0 0 20px rgba(155, 79, 255, 0.2);
+  letter-spacing: 1px;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4facfe 0%, #9b4fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 8px rgba(79, 172, 254, 0.3),
+    0 0 16px rgba(155, 79, 255, 0.2);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.project-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4facfe 0%, #9b4fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 5px rgba(79, 172, 254, 0.3),
+    0 0 10px rgba(155, 79, 255, 0.2);
+  margin: 8px 0;
+  text-align: center;
+}
+
+body.dark .gradient-title,
+body.dark .section-title,
+body.dark .project-card h3 {
+  background: linear-gradient(135deg, #6cc6ff 0%, #b475ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 10px rgba(108, 198, 255, 0.4),
+    0 0 20px rgba(180, 117, 255, 0.3);
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 
+      0 0 10px rgba(79, 172, 254, 0.3),
+      0 0 20px rgba(155, 79, 255, 0.2);
+  }
+  to {
+    text-shadow: 
+      0 0 15px rgba(79, 172, 254, 0.4),
+      0 0 25px rgba(155, 79, 255, 0.3),
+      0 0 30px rgba(79, 172, 254, 0.2);
+  }
 }
 
 .md3-title {
@@ -711,14 +769,6 @@ body.dark .icon-wrapper i.fa-file-pdf {
   color: var(--md-sys-color-primary);
   font-size: 28px;
   font-weight: 500;
-}
-
-.project-card h3 {
-  color: var(--md-sys-color-primary);
-  font-size: 16px;
-  font-weight: 500;
-  margin: 8px 0;
-  text-align: center;
 }
 
 body.dark .project-card h3 {
