@@ -175,9 +175,31 @@
     </div>
   </div>
 
-  <img src="run-removebg-preview.png" alt="Running Bugdroid" class="running-bugdroid">
+  <img src="icons/android.png" alt="Running Bugdroid" class="running-bugdroid">
 
   <script>
+    // Bugdroid animation control
+    const bugdroid = document.querySelector('.running-bugdroid');
+    
+    function updateBugdroidImage() {
+      const animationTime = (performance.now() % 10000) / 10000; // Get current position in the 10s animation
+      
+      // Add jumping class during the jump phase (60% - 70% of animation)
+      if (animationTime >= 0.4 && animationTime <= 0.7) {
+        bugdroid.classList.add('jumping');
+      } else {
+        bugdroid.classList.remove('jumping');
+      }
+    }
+    
+    // Update the image every frame
+    function animate() {
+      updateBugdroidImage();
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+
     function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById("theme-icon");

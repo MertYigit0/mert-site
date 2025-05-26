@@ -688,7 +688,7 @@ body.dark .project-card h3 {
 
 .project-links .md3-icon-button i {
   font-size: 24px;
-}
+  }
 
 .project-overlay {
   display: none;
@@ -707,8 +707,8 @@ body.dark .project-card h3 {
 
 .project-info.show {
   display: block;
-}
-
+  }
+  
 /* Scroll Progress Indicator */
 .scroll-progress {
   position: fixed;
@@ -862,6 +862,11 @@ body.dark .project-card h3 {
   height: 80px;
   z-index: 2;
   animation: runClimbJump 10s linear infinite;
+  content: url("icons/android.png");
+}
+
+.running-bugdroid.jumping {
+  content: url("icons/jetpack.png");
 }
 
 @keyframes runClimbJump {
