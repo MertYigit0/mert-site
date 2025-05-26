@@ -1,55 +1,122 @@
 // Proje kartları için tıklama işlevselliği
 document.addEventListener('DOMContentLoaded', function() {
   const projectCards = document.querySelectorAll('.project-card');
+  let activePopup = null;
+  let popupTimer = null;
+  
+  // Overlay oluştur
   const overlay = document.createElement('div');
   overlay.className = 'project-overlay';
   document.body.appendChild(overlay);
 
-  projectCards.forEach(card => {
-    card.addEventListener('click', function(e) {
-      if (window.matchMedia('(hover: none)').matches) {
-        e.preventDefault();
-        
-        // Diğer açık kartları kapat
-        projectCards.forEach(otherCard => {
-          if (otherCard !== card) {
-            otherCard.classList.remove('active');
-          }
-        });
+  // Scroll progress göstergesi oluştur
+  const scrollProgress = document.createElement('div');
+  scrollProgress.className = 'scroll-progress';
+  document.body.appendChild(scrollProgress);
 
-        // Tıklanan kartı aç/kapat
-        card.classList.toggle('active');
-        
-        // Overlay'i göster/gizle
-        if (card.classList.contains('active')) {
-          overlay.classList.add('show');
-        } else {
-          overlay.classList.remove('show');
-        }
-      }
-    });
-  });
-
-  // Proje bilgisi modalına tıklandığında kapat
-  document.querySelectorAll('.project-info').forEach(info => {
-    info.addEventListener('click', function(e) {
-      if (window.matchMedia('(hover: none)').matches) {
-        e.stopPropagation();
-        const card = this.closest('.project-card');
-        if (card) {
-          card.classList.remove('active');
-          overlay.classList.remove('show');
-        }
-      }
-    });
-  });
-
-  // Overlay'e tıklandığında aktif kartı kapat
-  overlay.addEventListener('click', function() {
-    const activeCard = document.querySelector('.project-card.active');
-    if (activeCard) {
-      activeCard.classList.remove('active');
-      this.classList.remove('show');
+  function closePopup(popup) {
+    if (popup) {
+      popup.classList.remove('show');
+      overlay.classList.remove('show');
+      setTimeout(() => {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+      }, 200);
     }
+    activePopup = null;
+    if (popupTimer) {
+      clearTimeout(popupTimer);
+      popupTimer = null;
+    }
+  }
+
+  function showPopup(popup) {
+    // Eğer aynı popup zaten açıksa, işlem yapma
+    if (activePopup === popup) {
+      return;
+    }
+
+    // Önce diğer açık popup'ları kapat
+    if (activePopup) {
+      closePopup(activePopup);
+    }
+
+    // Yeni popup'ı göster
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+    
+    // Kısa bir gecikme ile göster
+    setTimeout(() => {
+      popup.classList.add('show');
+      overlay.classList.add('show');
+    }, 10);
+
+    activePopup = popup;
+
+    // Önceki zamanlayıcıyı temizle
+    if (popupTimer) {
+      clearTimeout(popupTimer);
+    }
+
+    // 15 saniye sonra popup'ı kapatmak için zamanlayıcı ayarla
+    popupTimer = setTimeout(() => {
+      closePopup(popup);
+    }, 15000);
+  }
+
+  projectCards.forEach(card => {
+    const popup = card.querySelector('.project-info');
+    
+    // Kart tıklaması
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (popup.classList.contains('show')) {
+        closePopup(popup);
+      } else {
+        showPopup(popup);
+      }
+    });
+
+    // Popup içindeki linkler için event listener
+    const links = popup.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Popup içine tıklandığında kapanmasını engelle ve zamanlayıcıyı sıfırla
+    popup.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (popupTimer) {
+        clearTimeout(popupTimer);
+        popupTimer = setTimeout(() => {
+          closePopup(popup);
+        }, 15000);
+      }
+    });
+  });
+
+  // Overlay'e tıklandığında açık popup'ı kapat
+  overlay.addEventListener('click', function() {
+    if (activePopup) {
+      closePopup(activePopup);
+    }
+  });
+
+  // ESC tuşuna basıldığında açık popup'ı kapat
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && activePopup) {
+      closePopup(activePopup);
+    }
+  });
+
+  // Scroll progress göstergesi
+  const appContent = document.querySelector('.app-content');
+  appContent.addEventListener('scroll', () => {
+    const scrollPercentage = (appContent.scrollTop / (appContent.scrollHeight - appContent.clientHeight)) * 100;
+    scrollProgress.style.transform = `scaleX(${scrollPercentage / 100})`;
   });
 }); 
