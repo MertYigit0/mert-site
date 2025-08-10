@@ -159,6 +159,35 @@
             </div>
           </div>
         </div>
+
+        <div class="blog-section md3-surface" id="blogSection">
+          <h2 class="section-title">Blog Yazılarım</h2>
+          <div class="blog-grid" id="blogGrid">
+            <div class="blog-card" onclick="openBlogPost(0)">
+              <img src="nav3.png" alt="Navigation 3" class="blog-image">
+              <h3 class="blog-title">Jetpack Navigation 3 ile Android'de Modern Navigasyon Yönetimi</h3>
+            </div>
+            <div class="blog-card" onclick="openBlogPost(1)">
+              <img src="http.jpg" alt="HTTP Client" class="blog-image">
+              <h3 class="blog-title">Android Studio'da API Testi Artık Daha Kolay: HTTP Client Plugin</h3>
+            </div>
+            <div class="blog-card" onclick="openBlogPost(2)">
+              <img src="trustedtime.jpg" alt="TrustedTime API" class="blog-image">
+              <h3 class="blog-title">Android TrustedTime API: Google'ın Cihaz Saati Manipülasyonuna Çözümü</h3>
+            </div>
+          </div>
+          
+          <!-- Blog Post Content (Hidden by default) -->
+          <div class="blog-post-content" id="blogPostContent" style="display: none;">
+            <div class="blog-post-header">
+              <h2 class="blog-post-title" id="blogPostTitle"></h2>
+            </div>
+            <div class="blog-post-body">
+              <img class="blog-post-image" id="blogPostImage" alt="Blog Image">
+              <div class="blog-post-text" id="blogPostText"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="navigation-bar">
@@ -170,6 +199,15 @@
         </button>
         <button class="nav-button" onclick="scrollToSection('skills-section')" title="Teknolojiler">
           <i class="fas fa-code"></i>
+        </button>
+        <button class="nav-button" onclick="scrollToSection('blog-section')" title="Blog">
+          <i class="fas fa-blog"></i>
+        </button>
+      </div>
+      
+      <div class="home-button">
+        <button onclick="closeBlogPost()">
+          <i class="fas fa-home"></i>
         </button>
       </div>
     </div>
@@ -260,7 +298,7 @@
     }
 
     function updateActiveSection() {
-      const sections = ['profile-section', 'projects-section', 'skills-section'];
+      const sections = ['profile-section', 'projects-section', 'skills-section', 'blog-section'];
       const buttons = document.querySelectorAll('.nav-button');
       
       // Get the middle of the viewport
@@ -305,6 +343,396 @@
     setInterval(updateText, 6000);
     updateTime();
     setInterval(updateTime, 1000);
+
+    // Blog post data
+    const blogPosts = [
+      {
+        title: "Jetpack Navigation 3 ile Android'de Modern Navigasyon Yönetimi",
+       
+        content: `
+          <p>Android uygulamalarında kullanıcıların ekranlar arasındaki geçişlerinin hızlı ve stabil olması kullanıcı deneyimini doğrudan etkiler. Google'ın Jetpack Navigation Component (Nav2) uzun süre Android navigasyonu için standart oldu. Ancak Compose'un yaygınlaşması ve modern ihtiyaçlar doğrultusunda, Navigation 3 (Nav3) kütüphanesi tamamen yeniden tasarlanarak ortaya çıktı.</p>
+          
+          <p>Bu yazıda Navigation 3'ün temelleri, nasıl kullanıldığı ve Android geliştiricisine sunduğu avantajları detaylı şekilde ele alacağız.</p>
+          
+          <h3>❓Navigation 3 Nedir ve Navigation 2'den Farkı Ne?</h3>
+          <p>Navigation 3, Android Jetpack'in yeni nesil navigasyon kütüphanesi olup, Jetpack Compose ile tam uyumlu ve tamamen Kotlin DSL tabanlıdır. Önceki Navigation 2'nin fragment ve XML odaklı, back stack yönetiminin sistem tarafından otomatik yapıldığı klasik yapısından farklı olarak, Navigation 3'te back stack tamamen geliştiricinin kontrolündedir; böylece özel animasyonlar, özelleştirilebilir back stack stratejileri ve state yönetimi çok daha esnek ve modern mimarilere uygun şekilde yapılabilir.</p>
+          
+          <h3>🛠️Navigation 3 Kullanımı: Temel Adımlar</h3>
+          
+          <h4>🔑1. Ekranları Temsil Eden NavKey Oluşturun</h4>
+          <p>Navigation 3'te her ekranı bir NavKey nesnesi ile temsil edersiniz. Bu nesneler @Serializable ve NavKey interface'ini implement etmek zorundadır.</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+@Serializable
+data object ScreenHome : NavKey
+
+@Serializable
+data object ScreenDetail : NavKey</pre>
+          
+          <h4>📦2. Back Stack'inizi Oluşturun ve Koruyun</h4>
+          <p>rememberNavBackStack fonksiyonu, back stack'inizi hem ekran döndürme gibi konfigürasyon değişikliklerinde hem de process death durumunda otomatik olarak korur. Bunun için back stack'teki her öğe NavKey arayüzünü uygulamalı ve @Serializable olmalıdır.</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val backStack = rememberNavBackStack(ScreenHome)</pre>
+          
+          <h4>📺3. Ekranları Gösterin</h4>
+          <p>NavDisplay composable'ı back stack'in tepe noktasındaki ekranı gösterir. Hangi ekranların nasıl gösterileceğini ise entryProvider ile belirtebilirsiniz.</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+NavDisplay(
+    backStack = backStack,
+    onBack = { backStack.removeLastOrNull() },
+    entryProvider = entryProvider {
+        entry<ScreenHome> {
+            HomeScreen {
+                backStack.add(ScreenDetail)
+            }
+        }
+        entry<ScreenDetail> {
+            DetailScreen {
+                backStack.removeLastOrNull()
+            }
+        }
+    }
+)</pre>
+          
+          <h4>🎞️4. Animasyonları Ayarlayın</h4>
+          <p>transitionSpec, popTransitionSpec ve predictivePopTransitionSpec parametreleri ile hem global hem de ekran bazında animasyonları kolayca tanımlayabilirsiniz.</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+NavDisplay(
+    backStack = backStack,
+    transitionSpec = {
+        slideInHorizontally(initialOffsetX = { it }) togetherWith
+        slideOutHorizontally(targetOffsetX = { -it })
+    },
+    popTransitionSpec = {
+        slideInHorizontally(initialOffsetX = { -it }) togetherWith
+        slideOutHorizontally(targetOffsetX = { it })
+    }
+)</pre>
+          
+          <p>Dilerseniz özel bir ekran için animasyonları metadata olarak da tanımlayabilirsiniz.</p>
+          
+          <h3>🖥️ Two Pane Desteği ile Modern Tablet Deneyimi</h3>
+          <p>Navigation 3 ile gelen önemli yeniliklerden biri de, Two Pane çift panel arayüzlerin Compose ile artık çok daha kolay ve esnek bir şekilde uygulanabilmesi. Özellikle tablet, katlanabilir veya yatay modda çalışan cihazlarda kullanıcıya ana liste ve detay ekranının aynı anda gösterilebilmesi, modern uygulamalarda çoğu zaman beklenti haline geldi.</p>
+          
+          <p>Navigation 3 ile Two Pane desteğini aşağıdaki gibi hızlıca uygulayabilirsiniz:</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val backStack = rememberNavBackStack(ProductList)
+
+NavDisplay(
+    backStack = backStack,
+    sceneStrategy = TwoPaneSceneStrategy<Any>(),
+    entryProvider = entryProvider {
+        entry<ProductList>(metadata = TwoPaneScene.twoPane()) {
+            ProductListScreen { product ->
+                backStack.add(ProductDetail(product))
+            }
+        }
+        entry<ProductDetail>(metadata = TwoPaneScene.twoPane()) { detail ->
+            ProductDetailScreen(detail.productId)
+        }
+    }
+)</pre>
+          
+          <p>Bu sayede, Navigation 3'te back stack'inizi kolayca ikiye ayırarak, sol panelde ana liste ekranı, sağ panelde ise seçili detay ekranı gösterebilirsiniz. Ekran boyutuna göre dinamik olarak geçiş yapmak ve kullanıcı deneyimini en iyi hale getirmek çok kolaylaşıyor. Üstelik bu mimaride "geri" tuşu, geçiş animasyonları ve durum yönetimi gibi detaylar, tek back stack üzerinden kontrol edildiği için kod karmaşıklığı minimumda tutuluyor.</p>
+          
+          <h3>🌟Navigation 3'ün Öne Çıkan Avantajları</h3>
+          <ul>
+            <li><strong>Tam Back Stack Kontrolü:</strong> Back stack tamamen sizin yönetiminizde. İsterseniz standart bir stack yapısı kullanabilir, isterseniz ihtiyaçlarınıza göre özel bir yapı oluşturabilirsiniz.</li>
+            <li><strong>Compose ile Tam Uyum:</strong> Jetpack Compose'un state yönetimi ve lifecycle sistemleri ile sorunsuz çalışır.</li>
+            <li><strong>Kolay Durum Koruma:</strong> rememberNavBackStack ile konfigürasyon değişikliklerinde veya uygulama kapandığında bile navigasyon durumunuz kaybolmaz.</li>
+            <li><strong>Güçlü Animasyon Desteği:</strong> Transition API ile her ekran için giriş/çıkış animasyonlarını belirleyebilir, hatta swipe-back gibi gesture destekleri de ekleyebilirsiniz.</li>
+            <li><strong>Karmaşıklığın Azalması:</strong> XML ve fragment karmaşasından kurtulup, tek tip Kotlin DSL yapısı kullanılır.</li>
+          </ul>
+          
+          <h3>✅Sonuç</h3>
+          <p>Navigation 3, modern Android uygulama geliştirme pratiklerine uygun, back stack kontrolü ve animasyonlarda özgürlük sağlayan, Compose ile mükemmel uyumlu yeni nesil navigasyon kütüphanesidir. Nav2'nin karmaşıklığını azaltıp, geliştiriciye tam kontrol vermesi sayesinde uygulamalarınızda navigasyon deneyimini üst seviyeye çıkarabilirsiniz.</p>
+          
+          <h3>🔗Örnek Proje</h3>
+          <p>Yukarıda anlattığımız Navigation 3 kullanımını içeren basit demo projesine <a href="https://github.com/MertYigit0/Navigation3Sample" target="_blank">GitHub üzerinden buradan</a> ulaşabilirsiniz.</p>
+          
+          <h3>⚠️Not</h3>
+          <p>Navigation 3 şu anda alpha aşamasında olup, bazı API'ler ilerleyen sürümlerde değişebilir. Bu yüzden projelerinizde kullanmadan önce dokümantasyonu takip etmek önemli.</p>
+        `
+      },
+      {
+        title: "Android Studio'da API Testi Artık Daha Kolay: HTTP Client Plugin",
+        image: "http.jpg",
+        content: `
+          <p>Android geliştiricileri olarak API isteklerini test etmek için genellikle Postman, cURL veya benzeri dış aracılar kullanırız. Ancak Android Studio'nun son sürümleriyle birlikte gelen yeni bir özellik sayesinde bu işlemi doğrudan IDE üzerinden doğrudan yapabilirsiniz: HTTP Client Plugin.</p>
+          
+          <h3>HTTP Client Plugin Nedir?📡</h3>
+          <p>JetBrains tarafından tanıtılan HTTP Client, Android Studio (ve IntelliJ) içinde çalışan, basit ama güçlü bir HTTP test aracıdır. Harici bir uygulama açmadan API istekleri yapabilir, yanıtları görebilir ve JSON, XML gibi yapılandırılmış verileri formatlı olarak inceleyebilirsiniz.</p>
+          
+          <h3>HTTP Client Nasıl Aktif Edilir? ⚙️</h3>
+          <p>HTTP Client eklentisi, Android Studio 2024.3.2 Meerkat ve üzeri sürümlerde kullanılabilir.</p>
+          <p>Eklentiyi aktif etmek için:</p>
+          <ul>
+            <li>File > Settings > Plugins > Marketplace sekmesine gidin, HTTP Client araması yapın ve yükleyin.</li>
+            <li>Eklentiyi yeni yüklediyseniz Android Studio'yu yeniden başlatın.</li>
+          </ul>
+          
+          <h3>İnternet İkonu ile Otomatik HTTP İsteği 🛠️</h3>
+          <p>Android Studio'da editor penceresinde internet ikonuna (🌐) tıkladığınızda, IDE sizin için otomatik olarak bir .http dosyası oluşturur ve içine örnek bir istek ekler. Bu, HTTP isteklerinizi test etmeye başlamak için oldukça pratik bir yol sunar. Oluşturulan bu sayfada, isteği çalıştır butonuyla (▶️) kolayca test edebilir ve sonuçları aşağıda açılan pencerede anında görebilirsiniz.</p>
+          
+          <img src="ide.png" alt="Android Studio HTTP Client" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; margin: 20px 0;">
+          
+          <h3>Sonuç 📌</h3>
+          <p>Android Studio'nun yerleşik HTTP Client Plugin'i, geliştiriciler için büyük bir zaman kazandırıyor. Projeniz içinde kaldığınız yerden, farklı bir uygulama kullanmaya gerek kalmadan API testlerinizi yapabilir, çıktıları kaydedebilir ve hatalarınızı kolayca görebilirsiniz.</p>
+          
+          <h3>Örnek Proje🔗</h3>
+          <p>Basit bir API isteği örneği için <a href="https://github.com/MertYigit0/HttpClientSample" target="_blank">GitHub'daki HttpClientSample projemi</a> inceleyebilirsiniz. 🚀</p>
+          
+          <h3>Kaynaklar: 📚</h3>
+          <p>Daha fazla bilgi ve resmi dokümanlar için <a href="https://blog.jetbrains.com/blog/2025/06/12/run-http-requests-in-android-studio/" target="_blank">JetBrains'in HTTP Client blog yazısına</a> göz atabilirsiniz.</p>
+        `
+      },
+      {
+        title: "Android TrustedTime API: Google'ın Cihaz Saati Manipülasyonuna Çözümü",
+        image: "trustedtime.jpg",
+        content: `
+          <p>TrustedTime API nedir? 🕐</p>
+          <p>Android cihazlarda sistem saati kullanıcılar tarafından kolayca değiştirilebilir ve bu durum uygulamalarda hile veya manipülasyona yol açabilir. Google'ın TrustedTime API'si, uygulamalara Google sunucularından güvenilir ve güvenli zaman bilgisi sağlayarak bu sorunu çözüyor ve cihaz saati manipülasyonunu ciddi şekilde zorlaştırıyor.</p>
+          
+          <p>Google Play Hizmetleri 16.0.1 ile tanıtılan bu API, geliştiricilerin güvenilir zamana dayalı daha güvenli uygulamalar yapmasını sağlar. Yerel cihaz saatlerine veya standart NTP sorgularına göre çok daha iyi bir alternatiftir.</p>
+          
+          <h3>Sorun: Cihaz Saati Neden Güvenilir Değil? ⚠️</h3>
+          
+          <h4>Kullanıcı Manipülasyon Senaryoları 🎮💸</h4>
+          <ul>
+            <li><strong>Oyun hileleri:</strong> Oyuncular cihaz saatini geri alarak günlük ödülleri sıfırlıyor veya bekleme sürelerini atlıyor.</li>
+            <li><strong>Finansal sahtekarlık:</strong> Kullanıcılar işlem kayıtlarındaki zaman damgalarını değiştiriyor.</li>
+            <li><strong>Kimlik doğrulama atlatma:</strong> Zaman tabanlı tek kullanımlık şifreleri (TOTP) cihaz saatini değiştirerek kandırma.</li>
+            <li><strong>Abonelik suiistimali:</strong> Deneme sürelerini cihaz saatini geri alarak uzatma.</li>
+            <li><strong>Veri bütünlüğü sorunları:</strong> Zaman duyarlı verilerde yanlış kronolojik sıralamalar oluşturma.</li>
+          </ul>
+          
+          <h4>Kazara Oluşan Zaman Sorunları ⚠️⏰</h4>
+          <ul>
+            <li><strong>Otomatik zaman senkronizasyonu kapalı:</strong> Kullanıcılar yanlış saati manuel ayarlıyor.</li>
+            <li><strong>Saat dilimi karışıklığı:</strong> Seyahat eden kullanıcıların yanlış saat dilimi ayarları.</li>
+            <li><strong>Pil zayıflaması durumları:</strong> Pil düşükken cihaz saatlerinin sapması.</li>
+            <li><strong>Ağ sorunları:</strong> Standart zaman sunucularıyla senkronizasyon yapılamaması.</li>
+          </ul>
+          
+          <h3>TrustedTime API Nasıl Çalışır? 🔧</h3>
+          
+          <h4>Periyodik Senkronizasyon 🔄</h4>
+          <p>Cihaz açıldığında ve internet bağlantısı mevcutsa, TrustedTime otomatik olarak Google'ın hassas zaman sunucularıyla senkronize olur. Uygulamanın ekstra müdahalesine gerek yoktur.</p>
+          
+          <h4>Saat Sapması Hesaplama ⏳</h4>
+          <p>Senkronizasyondan sonra TrustedTime, cihazın dahili saatindeki sapmayı takip eder ve gerçek zamanı şu formülle hesaplar:</p>
+          
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+Gerçek zaman = Son senkronizasyon zamanı + Cihazda geçen süre + Sapma düzeltmesi</pre>
+          
+          <h4>Yerel Zaman Hesaplama 🖥️</h4>
+          <p>Uygulamanız zaman istediğinde, TrustedTime son senkronizasyon zamanını, cihazın çalıştığı süreyi ve sapmayı kullanarak yerel olarak hızlıca hesaplama yapar.</p>
+          
+          <h4>Doğruluk Meta Verisi 📊</h4>
+          <p>Basit zaman damgası API'lerinin aksine TrustedTime zamanla ilgili ek meta veriler sunar:</p>
+          <ul>
+            <li><strong>Hata sınırları:</strong> Zaman damgasının ne kadar doğru olduğu</li>
+            <li><strong>Son senkronizasyon bilgisi:</strong> Cihazın en son ne zaman senkronize olduğu</li>
+            <li><strong>Güven seviyeleri:</strong> Verilen zamanın ne kadar güvenilir olduğu</li>
+          </ul>
+          
+          <h3>Alternatiflere Karşı Temel Avantajları 🚀</h3>
+          
+          <h4>System.currentTimeMillis() karşısında TrustedTime API Avantajları🕰️</h4>
+          <ul>
+            <li><strong>Güvenlik:</strong> Manipüle edilmesi çok zor.</li>
+            <li><strong>Doğruluk:</strong> Cihaz saatindeki sapmayı telafi eder.</li>
+            <li><strong>Güvenilirlik:</strong> Kullanıcı saat değişikliklerinden etkilenmez.</li>
+          </ul>
+          
+          <h4>Doğrudan NTP çağrıları karşısında TrustedTime API Avantajları 🌐</h4>
+          <ul>
+            <li><strong>Performans:</strong> Her zaman sorgusu için ağ talebi yok.</li>
+            <li><strong>Pil verimliliği:</strong> Daha az ağ kullanımı.</li>
+            <li><strong>Çevrimdışı çalışma:</strong> Sürekli internet gerektirmez.</li>
+            <li><strong>Güvenilirlik:</strong> Google'ın sağlam altyapısını kullanır.</li>
+          </ul>
+          
+          <h4>Sunucu ile zaman doğrulaması karşısında TrustedTime API Avantajları 🖥️</h4>
+          <ul>
+            <li><strong>Gecikme:</strong> Anında yerel hesaplama.</li>
+            <li><strong>Kullanılabilirlik:</strong> İlk senkronizasyon sonrası çevrimdışı çalışma.</li>
+            <li><strong>Maliyet:</strong> Sunucu altyapısı gerektirmez.</li>
+            <li><strong>Ölçeklenebilirlik:</strong> Sunucu yükü olmaz.</li>
+          </ul>
+          
+          <h3>TrustedTime Mimarisi 🏗️</h3>
+          
+          <h4>Google Altyapısı 🌐</h4>
+          <p>TrustedTime, doğruluk ve güvenilirlik için GPS uydularıyla senkronize çalışan atomik saatler ve zaman sunucularından oluşan Google'ın küresel ağını kullanır. Bu altyapı, dünya çapında dağılmış yapısıyla yüksek erişilebilirlik sağlar. Anormallikler sürekli olarak izlenir ve sistem, kriptografik yöntemlerle olası saldırılara karşı korunur.</p>
+          
+          <h4>Cihaz Seviyesi Entegrasyon 📱</h4>
+          <p>Android cihazlarda TrustedTime, doğrudan Google Play Hizmetleri üzerinden çalışır ve Android'in sistem seviyesindeki zaman yönetimiyle entegre şekilde çalışır. Zaman senkronizasyon işlemleri cihazın ağ yığını üzerinden verimli bir şekilde gerçekleştirilir. Ayrıca, bu işlemler sırasında pil tüketimini en aza indirmek için güç yönetimi optimizasyonları yapılır.</p>
+          
+          <h4>Gizlilik ve Güvenlik 🔒</h4>
+          <p>TrustedTime, gizliliği ön planda tutacak şekilde tasarlanmıştır. Kullanıcıya ait herhangi bir kişisel veri toplanmaz; yalnızca zaman senkronizasyon verileri işlenir. Ağ üzerindeki etkisi son derece düşüktür çünkü senkronizasyon işlemleri seyrek ve küçük boyutludur. Çoğu işlem cihaz üzerinde yerel olarak gerçekleştirilir, bu da hem hız hem de gizlilik açısından avantaj sağlar. Google sunucularıyla yapılan tüm veri iletimleri ise şifrelenmiş bir şekilde gerçekleştirilir, böylece iletişim güvenliği sağlanır.</p>
+          
+          <h3>TrustedTime API Ne Zaman ve Neden Kullanılır? 🎯</h3>
+          
+          <h4>Önemli Kullanım Alanları</h4>
+          <ul>
+            <li><strong>Finansal uygulamalar:</strong> İşlem zaman damgası doğrulama, ödeme süreçleri, denetim takibi, yasal uyumluluk</li>
+            <li><strong>Oyun ve eğlence:</strong> Günlük ödüller, zamanla kilitli içerik, liderlik tabloları, etkinlik planlaması</li>
+            <li><strong>Güvenlik ve kimlik doğrulama:</strong> Oturum zaman aşımı, zaman tabanlı erişim kontrolü, sertifika doğrulama, denetim kayıtları</li>
+            <li><strong>İş ve verimlilik:</strong> Zaman takibi, planlanmış görevler, takvim senkronizasyonu, iş akışı otomasyonu</li>
+          </ul>
+          
+          <h4>Ne Zaman Kullanılmalı?🧩</h4>
+          <p>Kendine şunları sor:</p>
+          <ul>
+            <li>Uygulaman zamana duyarlı kararlar alıyor mu?</li>
+            <li>Kullanıcıların zamanı manipüle etmesi sorun yaratır mı?</li>
+            <li>Yanlış zaman güvenlik riskleri yaratır mı?</li>
+            <li>Uyumluluk için kesin zaman damgası gerekli mi?</li>
+            <li>Çevrimdışı senaryolarda doğru zaman önemli mi?</li>
+          </ul>
+          <p>Evet yanıtı varsa TrustedTime API düşünmeye değer bir seçenek olabilir.</p>
+          
+          <h3>Temel Kullanım Örneği 💻</h3>
+          
+          <h4>1. Başlatma (Initialization)</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+//Uygulama başlatıldığında TrustedTimeClient'ı başlat:
+class MyApplication : Application() {
+    var trustedTimeClient: TrustedTimeClient? = null
+
+    override fun onCreate() {
+        super.onCreate()
+        TrustedTime.createClient(this).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                trustedTimeClient = task.result
+            }
+        }
+    }
+}</pre>
+          
+          <h4>⏱️ 2. Güvenilir Zamanı Alma</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+// Uygulama içerisinde ihtiyaç duyduğunda güvenilir zaman al:
+fun getCurrentTrustedTime(context: Context): Long? {
+    val app = context.applicationContext as MyApplication
+    return app.trustedTimeClient?.computeCurrentUnixEpochMillis()
+}</pre>
+          
+          <h4>🚨 3. Zaman Manipülasyonu Tespiti</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+// Sistem saati ile TrustedTime arasındaki farkı kontrol et:
+fun detectTimeManipulation(context: Context): Boolean {
+    val trustedTime = getCurrentTrustedTime(context) ?: return false
+    val systemTime = System.currentTimeMillis()
+    val difference = abs(trustedTime - systemTime)
+    return difference > THRESHOLD_MS // Örn: 5000ms
+}</pre>
+          
+          <h4>⚠️ 4. Hata Durumlarında Geri Dönüş (Fallback)</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+fun getReliableTime(): TimeResult {
+    return when (val trustedTime = getCurrentTrustedTime()) {
+        null -> TimeResult.Fallback(System.currentTimeMillis())
+        else -> TimeResult.Trusted(trustedTime)
+    }
+}</pre>
+          
+          <h3>Kısıtlar ve Dikkat Edilmesi Gerekenler ⚖️</h3>
+          
+          <h4>Teknik Kısıtlar ⚙️</h4>
+          <ul>
+            <li><strong>Google Play Hizmetleri gerektirir:</strong> AOSP veya bazı Çin cihazlarında yok.</li>
+            <li><strong>İnternet bağımlılığı:</strong> İlk senkron için internet şart.</li>
+            <li><strong>API seviyesi:</strong> Android 5.0 (API 21) ve üstü gerekli.</li>
+            <li><strong>Doğruluk sınırları:</strong> Atomik saat hassasiyeti yok, hata payı var.</li>
+          </ul>
+          
+          <h4>Güvenlik Dikkatleri 🔐</h4>
+          <ul>
+            <li><strong>Tam güvenlik değil:</strong> İleri tekniklerle hala manipüle edilebilir.</li>
+            <li><strong>Kritik işlemler için sunucu doğrulaması ile desteklenmeli.</strong></li>
+            <li><strong>Rootlu cihazlarda koruma aşılabilir.</strong></li>
+          </ul>
+          
+          <h4>Operasyonel Hususlar ⚡</h4>
+          <ul>
+            <li>Senkronizasyon gecikmeleri olabilir.</li>
+            <li>Senkron sırasında pil kullanımı küçük ama var.</li>
+            <li>Bölgesel kısıtlamalar olabilir.</li>
+          </ul>
+          
+          <h3>Sonuç 🔚</h3>
+          <p>TrustedTime API, Android güvenlik ekosisteminde zaman manipülasyonu sorunlarına karşı pratik ve etkili bir çözüm sunar. Kusursuz olmasa da, zaman tabanlı saldırılara karşı korumayı ciddi şekilde artırır ve sürekli internet gerektiren yöntemlere kıyasla daha iyi bir kullanıcı deneyimi sağlar. Finans, oyun ve güvenlik gibi zaman hassasiyeti olan uygulamalarda kullanılması gerekir. Sistem saatinden daha güvenli, NTP'den daha verimli olan bu API; doğru kurulum, hata yönetimi ve yedekleme stratejileriyle birlikte katmanlı güvenlik yaklaşımının bir parçası olmalıdır; sunucu doğrulamasının yerine geçmez, tamamlar.</p>
+          
+          <p>Asıl soru, uygulamanızın doğru zamana ihtiyaç duyup duymadığı değil — doğru zamanı kullanmamanın getireceği güvenlik ve kullanıcı deneyimi risklerini göze alıp alamayacağınızdır.</p>
+          
+          <h3>Uygulamalı Örnek 🛠️</h3>
+          <p>TrustedTime API'nin nasıl çalıştığını test etmek için bu makalede anlattığım tüm konseptleri gösteren örnek bir Android uygulaması oluşturdum:</p>
+          
+          <h4>🔗Örnek Projeyi GitHub'da Görüntüle</h4>
+          <p>Basit bir API isteği örneği için <a href="https://github.com/MertYigit0/TrustedTimeAPISample" target="_blank">GitHub'daki TrustedTimeAPISample projemi</a> inceleyebilirsiniz. 🚀</p>
+          
+          <h3>Kaynaklar: 📚</h3>
+          <ul>
+            <li><a href="https://android-developers.googleblog.com/2025/02/trustedtime-api-introducing-reliable-approach-to-time-keeping-for-apps.html" target="_blank">Android Developers Blog - TrustedTime API</a></li>
+            <li><a href="https://developers.google.com/android/reference/com/google/android/gms/time/TrustedTime" target="_blank">Google Developers - TrustedTime API Reference</a></li>
+          </ul>
+        `
+      }
+    ];
+
+
+
+    // Blog post functions
+    function openBlogPost(index) {
+      const post = blogPosts[index];
+      const blogGrid = document.getElementById('blogGrid');
+      const blogPostContent = document.getElementById('blogPostContent');
+      const blogPostTitle = document.getElementById('blogPostTitle');
+      const blogPostImage = document.getElementById('blogPostImage');
+      const blogPostText = document.getElementById('blogPostText');
+      
+      // Set blog post content
+      blogPostTitle.textContent = post.title;
+      blogPostImage.src = post.image;
+      blogPostText.innerHTML = post.content;
+      
+      // Hide blog grid and show blog post content
+      blogGrid.style.display = 'none';
+      blogPostContent.style.display = 'block';
+      
+      // Add tablet view class to emulator
+      document.querySelector('.emulator-frame').classList.add('tablet-view');
+      
+      // Hide image in tablet view
+      blogPostImage.style.display = 'none';
+      
+      // Wait a bit for the layout to update, then scroll to top
+      setTimeout(() => {
+        document.querySelector('.app-content').scrollTop = 0;
+      }, 100);
+    }
+
+    function closeBlogPost() {
+      const blogGrid = document.getElementById('blogGrid');
+      const blogPostContent = document.getElementById('blogPostContent');
+      const blogPostImage = document.getElementById('blogPostImage');
+      
+      // Show blog grid and hide blog post content
+      blogGrid.style.display = 'flex';
+      blogPostContent.style.display = 'none';
+      
+      // Remove tablet view class from emulator
+      document.querySelector('.emulator-frame').classList.remove('tablet-view');
+      
+      // Show image again when returning to normal view
+      blogPostImage.style.display = 'block';
+    }
   </script>
 </body>
 </html>
