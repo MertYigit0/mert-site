@@ -17,11 +17,14 @@
         <div class="status-bar-left">
           <i class="fas fa-signal"></i>
           <i class="fas fa-wifi"></i>
+          <button type="button" class="lang-toggle" id="lang-toggle" onclick="toggleLanguage()" data-i18n-title="langToggle" data-i18n-aria-label="langToggle">
+            <i class="fas fa-globe"></i><span class="lang-code" id="lang-code">TR</span>
+          </button>
         </div>
         <div class="status-bar-center">12:00</div>
         <div class="status-bar-right">
           <i class="fas fa-battery-full"></i>
-          <div class="theme-toggle" onclick="toggleTheme()">
+          <div class="theme-toggle" onclick="toggleTheme()" data-i18n-title="themeToggle">
             <i id="theme-icon" class="fas fa-sun"></i>
           </div>
         </div>
@@ -31,7 +34,7 @@
         <div class="profile-section md3-surface">
           <div class="profile-header">
             <div class="profile-container">
-              <img src="profile/photo.webp" alt="Profil Fotoğrafı" class="profile-img front" />
+              <img src="profile/photo.webp" alt="Profil Fotoğrafı" data-i18n-alt="profilePhoto" class="profile-img front" />
               <img src="misc/M1_C0_A1_P3.webp" alt="Dark Mode Profile" class="profile-img back light-mode-back" />
               <img src="misc/hello-android.webp" alt="Hello Android" class="profile-img back dark-mode-back" />
             </div>
@@ -40,52 +43,52 @@
               <span class="dynamic-text"></span>
             </div>
           </div>
-          <p class="md3-body">Android geliştiricisiyim, yaratıcı mobil uygulamalar yapıyorum.<br>Yeni fırsatlara ve tekliflere açığım.</p>
+          <p class="md3-body" data-i18n-html="bio">Android geliştiricisiyim, yaratıcı mobil uygulamalar yapıyorum.<br>Yeni fırsatlara ve tekliflere açığım.</p>
         </div>
 
         <div class="social-links md3-surface">
           <div class="app-grid">
-            <a href="https://github.com/MertYigit0" target="_blank" class="app-icon" title="GitHub Profilim">
+            <a href="https://github.com/MertYigit0" target="_blank" class="app-icon" title="GitHub Profilim" data-i18n-title="githubTitle">
               <div class="icon-wrapper">
                 <i class="fab fa-github"></i>
               </div>
               <span class="app-name">GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/mertyigit0/" target="_blank" class="app-icon" title="LinkedIn Profilim">
+            <a href="https://www.linkedin.com/in/mertyigit0/" target="_blank" class="app-icon" title="LinkedIn Profilim" data-i18n-title="linkedinTitle">
               <div class="icon-wrapper">
                 <i class="fab fa-linkedin"></i>
               </div>
               <span class="app-name">LinkedIn</span>
             </a>
-            <a href="https://medium.com/@mertyigit148" target="_blank" class="app-icon" title="Medium Yazılarım">
+            <a href="https://medium.com/@mertyigit148" target="_blank" class="app-icon" title="Medium Yazılarım" data-i18n-title="mediumTitle">
               <div class="icon-wrapper">
                 <img src="social/medium.png" alt="Medium" class="medium-icon">
               </div>
               <span class="app-name">Medium</span>
             </a>
-            <a href="https://play.google.com/store/apps/developer?id=MYStudio&hl=en_US" target="_blank" class="app-icon" title="Play Store Uygulamalarım">
+            <a href="https://play.google.com/store/apps/developer?id=MYStudio&hl=en_US" target="_blank" class="app-icon" title="Play Store Uygulamalarım" data-i18n-title="playTitle">
               <div class="icon-wrapper">
                 <i class="fab fa-google-play"></i>
               </div>
               <span class="app-name">Play Store</span>
             </a>
-            <a href="mailto:mertyigit.dev@gmail.com" class="app-icon" title="E-posta Gönder">
+            <a href="mailto:mertyigit.dev@gmail.com" class="app-icon" title="E-posta Gönder" data-i18n-title="mailTitle">
               <div class="icon-wrapper">
                 <i class="fas fa-envelope"></i>
               </div>
               <span class="app-name">Mail</span>
             </a>
-            <a href="profile/mertcv.pdf" class="app-icon" target="_blank" title="CV'imi İncele">
+            <a href="profile/mertcv.pdf" class="app-icon" target="_blank" title="CV'imi İncele" data-i18n-title="cvTitle">
               <div class="icon-wrapper">
                 <img src="profile/cv.png" alt="CV" class="medium-icon">
               </div>
-              <span class="app-name">CV İncele</span>
+              <span class="app-name" data-i18n="cvName">CV İncele</span>
             </a>
           </div>
         </div>
 
         <div class="projects-section md3-surface">
-          <h2 class="section-title">Projelerim</h2>
+          <h2 class="section-title" data-i18n="projectsTitle">Projelerim</h2>
           <div class="project-grid">
             <a href="https://github.com/MertYigit0/SecretSantaAI" target="_blank" class="project-card" title="AI-powered app for organizing gift exchanges and suggestions.">
               <img src="projects/secretsanta.png" alt="Secret Santa AI" />
@@ -120,7 +123,7 @@
         </div>
 
         <div class="skills-section md3-surface">
-          <h2 class="section-title">Kullandığım Teknolojiler</h2>
+          <h2 class="section-title" data-i18n="skillsTitle">Kullandığım Teknolojiler</h2>
           <div class="skills-grid">
             <div class="skill-item md3-card">
               <img src="icons/kotlin.png" alt="Kotlin" class="skill-icon">
@@ -166,19 +169,19 @@
         </div>
 
         <div class="blog-section md3-surface" id="blogSection">
-          <h2 class="section-title">Blog Yazılarım</h2>
+          <h2 class="section-title" data-i18n="blogTitle">Blog Yazılarım</h2>
           <div class="blog-grid" id="blogGrid">
             <div class="blog-card" onclick="openBlogPost(0)">
               <img src="misc/broadcastreceiver.webp" alt="Android BroadcastReceiver" class="blog-image">
-              <h3 class="blog-title">Android BroadcastReceiver: Temeller, Modern Kısıtlamalar ve En İyi Pratikler</h3>
+              <h3 class="blog-title" data-blog-title="0">Android BroadcastReceiver: Temeller, Modern Kısıtlamalar ve En İyi Pratikler</h3>
             </div>
             <div class="blog-card" onclick="openBlogPost(1)">
               <img src="misc/http.jpg" alt="HTTP Client" class="blog-image">
-              <h3 class="blog-title">Android Studio'da API Testi Artık Daha Kolay: HTTP Client Plugin</h3>
+              <h3 class="blog-title" data-blog-title="1">Android Studio'da API Testi Artık Daha Kolay: HTTP Client Plugin</h3>
             </div>
             <div class="blog-card" onclick="openBlogPost(2)">
               <img src="misc/trustedtime.jpg" alt="TrustedTime API" class="blog-image">
-              <h3 class="blog-title">Android TrustedTime API: Google'ın Cihaz Saati Manipülasyonuna Çözümü</h3>
+              <h3 class="blog-title" data-blog-title="2">Android TrustedTime API: Google'ın Cihaz Saati Manipülasyonuna Çözümü</h3>
             </div>
           </div>
           
@@ -196,13 +199,13 @@
       </div>
 
       <div class="navigation-bar">
-        <button class="nav-button active" onclick="scrollToSection('profile-section')" title="Profil">
+        <button class="nav-button active" onclick="scrollToSection('profile-section')" title="Profil" data-i18n-title="navProfile">
           <i class="fas fa-user"></i>
         </button>
-        <button class="nav-button" onclick="scrollToSection('projects-section')" title="Projeler">
+        <button class="nav-button" onclick="scrollToSection('projects-section')" title="Projeler" data-i18n-title="navProjects">
           <i class="fas fa-project-diagram"></i>
         </button>
-        <button class="nav-button" onclick="scrollToSection('skills-section')" title="Teknolojiler">
+        <button class="nav-button" onclick="scrollToSection('skills-section')" title="Teknolojiler" data-i18n-title="navSkills">
           <i class="fas fa-code"></i>
         </button>
         <button class="nav-button" onclick="scrollToSection('blog-section')" title="Blog">
@@ -211,7 +214,7 @@
       </div>
       
       <div class="home-button">
-        <button onclick="closeBlogPost()">
+        <button onclick="closeBlogPost()" data-i18n-title="home">
           <i class="fas fa-home"></i>
         </button>
       </div>
@@ -698,9 +701,372 @@ fun getReliableTime(): TimeResult {
 
 
 
+    // English blog posts (same order as blogPosts)
+    const blogPostsEn = [
+      {
+        title: "Android BroadcastReceiver: Fundamentals, Modern Restrictions and Best Practices",
+        content: `
+          <p>In Android development, a BroadcastReceiver lets apps listen for messages coming from both the system and other apps. It can be used for many kinds of events, from battery status and network changes to device boot and custom in-app notifications.</p>
+
+          <p>However, because of the restrictions introduced after Android 8.0, lifecycle management and security concerns, BroadcastReceiver now has to be used more deliberately. In this article, I explain how to manage BroadcastReceiver correctly in modern Android in a simple but comprehensive way.</p>
+
+          <h3>📌 1. What Is a BroadcastReceiver?</h3>
+          <p>In short: it lets us listen for messages sent by the system or by apps.</p>
+          <p><strong>Example system broadcasts:</strong></p>
+          <ul>
+            <li>ACTION_BATTERY_LOW → Battery is low</li>
+            <li>ACTION_POWER_CONNECTED → Charger connected</li>
+            <li>ACTION_BOOT_COMPLETED → Device finished booting</li>
+            <li>ACTION_AIRPLANE_MODE_CHANGED → Airplane mode changed</li>
+          </ul>
+          <p><strong>Example custom broadcast:</strong></p>
+          <ul>
+            <li>Notifying other components when data is refreshed inside the app.</li>
+          </ul>
+
+          <h3>📌 2. Ways to Register a BroadcastReceiver</h3>
+          <h4>1) Manifest-declared receivers</h4>
+          <ul>
+            <li>Triggered even when the app is not running.</li>
+            <li>Required for some critical events such as Boot Completed.</li>
+            <li>Since Android 8.0, many <em>implicit broadcasts</em> can no longer be received from the manifest.</li>
+          </ul>
+          <p><strong>Pro:</strong> Works even when the app is closed.<br><strong>Con:</strong> Restrictions and security risks.</p>
+
+          <h4>2) Context-registered</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val receiver = object : BroadcastReceiver() {
+    override fun onReceive(c: Context, i: Intent) { }
+}
+
+registerReceiver(receiver, IntentFilter(Intent.ACTION_BATTERY_LOW))</pre>
+          <ul>
+            <li>Registered with an Activity or Application context.</li>
+            <li>If you register with an Activity context, it only works while the activity is alive.</li>
+            <li>If you register with the Application context, it keeps listening as long as the app process is running.</li>
+          </ul>
+          <p><strong>Pro:</strong> More controlled, modern usage.<br><strong>Watch out:</strong> Don't forget to call unregisterReceiver(), otherwise you may cause a memory leak.</p>
+
+          <h3>📌 3. Normal vs Ordered Broadcasts</h3>
+          <h4>Normal broadcast (sendBroadcast)</h4>
+          <ul>
+            <li>Delivered to all receivers at the same time.</li>
+            <li>No ordering.</li>
+            <li>Faster.</li>
+          </ul>
+          <h4>Ordered broadcast (sendOrderedBroadcast)</h4>
+          <ul>
+            <li>Delivered to receivers one at a time.</li>
+            <li>The order is determined by <strong>priority</strong>.</li>
+            <li>A receiver can abort the broadcast or modify its result.</li>
+          </ul>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+&lt;intent-filter android:priority="10"&gt;</pre>
+
+          <h3>📌 4. Why Were the Android 8.0 Restrictions Introduced?</h3>
+          <p>Since Android 8.0 (Oreo), listening for implicit broadcasts in the manifest has been heavily restricted.</p>
+          <p><strong>Reasons:</strong></p>
+          <ul>
+            <li><strong>Performance:</strong> Hundreds of apps listening for system broadcasts in the background were slowing devices down dramatically.</li>
+            <li><strong>Security:</strong> Sensitive information could be delivered to the wrong apps.</li>
+          </ul>
+          <p><strong>Result:</strong><br>Only <em>a small set of specific system broadcasts</em> can be received from the manifest.<br>For everything else, receivers should be registered in code.</p>
+
+          <h3>📌 5. The Biggest Mistake: Doing Long Work in a BroadcastReceiver</h3>
+          <p>onReceive() runs on the <strong>main thread</strong> and must finish quickly.</p>
+          <p>Don't:</p>
+          <ul>
+            <li>Make network requests</li>
+            <li>Perform heavy IO operations</li>
+            <li>Run large computations</li>
+          </ul>
+          <p>Doing so can lead to an ANR.</p>
+          <h4>Solution:</h4>
+          <h4>1) Use goAsync()</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val pendingResult = goAsync()
+CoroutineScope(Dispatchers.IO).launch {
+    // long-running work
+    pendingResult.finish()
+}</pre>
+          <h4>2) Schedule the work with JobScheduler</h4>
+          <p>The safest approach for long-running work.</p>
+
+          <h3>📌 6. Security: Using exported and permission</h3>
+          <h4>exported = true</h4>
+          <p>Any other app can send broadcasts to you.</p>
+          <p>Risks:</p>
+          <ul>
+            <li>A malicious app can send fake data.</li>
+            <li>Sensitive receivers can be abused.</li>
+          </ul>
+          <h4>Protecting with a permission</h4>
+          <p>The sender and the receiver must share the same permission.</p>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+&lt;uses-permission android:name="com.example.SECURE_PERMISSION"/&gt;</pre>
+
+          <h3>📌 7. Summary: Best Practices</h3>
+          <ul>
+            <li>Only declare the broadcasts you really need in the manifest.</li>
+            <li>If you register a receiver with an Activity context, always unregister it.</li>
+            <li>Don't do long work inside onReceive → use goAsync() or JobScheduler.</li>
+            <li>For security, use a permission or exported = false.</li>
+            <li>Avoid listening for broadcasts you don't need.</li>
+          </ul>
+
+          <h3>✅ Conclusion</h3>
+          <p>BroadcastReceiver is still an important part of Android, but knowing how to use it correctly in modern Android is critical. If performance, security and lifecycle management are ignored, your app may behave unexpectedly, hit ANRs, or waste battery in the background.</p>
+          <p>Used correctly, it is a very powerful tool for handling both system and in-app events.</p>
+        `
+      },
+      {
+        title: "API Testing Made Easier in Android Studio: HTTP Client Plugin",
+        content: `
+          <p>As Android developers, we usually use external tools like Postman, cURL, or similar to test API requests. However, thanks to a new feature introduced in recent versions of Android Studio, you can now perform this directly within the IDE itself: the HTTP Client Plugin.</p>
+          <h3>What is HTTP Client? 📡</h3>
+          <p>Introduced by JetBrains, the HTTP Client is a simple yet powerful HTTP testing tool that works inside Android Studio (and IntelliJ). You can make API requests, view responses, and inspect structured data formats like JSON and XML — all without opening an external application.</p>
+          <h3>How to Enable HTTP Client? ⚙️</h3>
+          <p>The HTTP Client plugin is available for <strong>Android Studio 2024.3.2 Meerkat</strong> and later versions.<br> To enable the plugin:<br> Go to <strong>File &gt; Settings &gt; Plugins &gt; Marketplace</strong> tab, search for <strong>HTTP Client</strong>, and install it.<br> If you just installed the plugin, restart Android Studio.</p>
+          <h3>Automatic HTTP Request with the Internet Icon 🛠️</h3>
+          <p>When you click the internet icon (🌐) in the editor window of Android Studio, the IDE automatically creates a .http file for you and inserts a sample request. This is a very practical way to start testing HTTP requests quickly. On this page, you can easily test the request by clicking the run button (▶️) and instantly see the results in the pane below.</p>
+          <img src="misc/ide.png" alt="Android Studio HTTP Client" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; margin: 20px 0;">
+          <h3>Conclusion 📌</h3>
+          <p>Android Studio’s built-in HTTP Client Plugin saves developers a lot of time. You can test your APIs right inside your project, save outputs, and easily spot errors without leaving the IDE.</p>
+          <h3>Example Project 🔗</h3>
+          <p>For a simple API request example, you can check out my <a href="https://github.com/MertYigit0/HttpClientSample" target="_blank" rel="noopener noreferrer">HttpClientSample</a> project on GitHub. 🚀</p>
+          <h3>Resources: 📚</h3>
+          <p>For more information and official documentation, take a look at <a href="https://blog.jetbrains.com/blog/2025/06/12/run-http-requests-in-android-studio/" target="_blank" rel="noopener noreferrer">JetBrains’ HTTP Client blog post</a>.</p>
+        `
+      },
+      {
+        title: "Android TrustedTime API: Google's Solution to Device Time Manipulation",
+        content: `
+          <h3>What is TrustedTime API? 🕐</h3>
+          <p>Android device clocks can be easily changed by users to cheat or manipulate apps. Google’s TrustedTime API solves this problem by providing apps with reliable, secure time directly from Google’s servers — making time manipulation much harder.</p>
+          <p>Introduced in Google Play Services 16.0.1, this API helps developers create more secure apps that rely on accurate time, offering a better option than local device clocks or standard NTP requests.</p>
+          <h3>The Problem: Why Device Time Can’t Be Trusted ⚠️</h3>
+          <p>Before diving into TrustedTime, let’s understand why relying on device system time is problematic:</p>
+          <h4>User Manipulation Scenarios🎮💸</h4>
+          <ul><li>Gaming exploit: Players set device time backward to reset daily rewards or skip waiting periods.</li><li>Financial fraud: Users manipulate timestamps on transaction records.</li><li>Authentication bypass: Exploiting time-based one-time passwords (TOTP) by adjusting device clocks.</li><li>Subscription abuse: Extending trial periods by rolling back system time.</li><li>Data integrity issues: Creating false chronological ordering in time-sensitive data.</li></ul>
+          <h4>Accidental Time Issues⚠️⏰</h4>
+          <ul><li>Automatic time sync disabled: Users manually set incorrect time.</li><li>Timezone confusion: Traveling users with incorrect timezone settings.</li><li>Battery drain scenarios: Device clocks drifting when battery is low.</li><li>Network issues: Inability to sync with standard time servers.</li></ul>
+          <h3>How TrustedTime API Works 🔧</h3>
+          <p>Unlike traditional time services that query the network every time, TrustedTime uses a smarter method to keep your app’s time accurate and secure. Here’s how it works:</p>
+          <h4>1. Periodic Synchronization🔄</h4>
+          <blockquote>Device startup → Internet available → Sync with Google’s time servers</blockquote>
+          <p>When the device starts and an internet connection is available, TrustedTime silently syncs with Google’s precise time servers. This happens automatically in the background, without your app needing to do anything.</p>
+          <h4>2. Clock Drift Calculation⏳</h4>
+          <p>After syncing, TrustedTime keeps track of how much the device’s internal clock drifts over time. It calculates the current time as:<br> <em>Real time = Last sync time + Elapsed device time + Drift correction</em></p>
+          <h4>3. Local Time Computation🖥️</h4>
+          <p>When your app asks for the current time, TrustedTime quickly computes it locally using the last sync timestamp, how long the device has been running since then, and adjustments for any clock drift.</p>
+          <h4>4. Accuracy Metadata📊</h4>
+          <p>Unlike simple timestamp APIs, TrustedTime provides additional metadata:</p>
+          <ul><li>Error bounds: How accurate the timestamp is likely to be</li><li>Last sync information: When the device last synchronized with time servers</li><li>Confidence levels: Reliability indicators for the provided time</li></ul>
+          <h3>Key Advantages Over Alternatives 🚀</h3>
+          <h4>TrustedTime API Compared to System.currentTimeMillis()</h4>
+          <ul><li><strong>Security: </strong>Much harder to manipulate.</li><li><strong>Accuracy:</strong> Compensates for device clock drift.</li><li><strong>Reliability:</strong> Not affected by user time changes.</li></ul>
+          <h4>TrustedTime API Compared to Direct NTP Calls🌐</h4>
+          <ul><li><strong>Performance:</strong> No network request per time query.</li><li><strong>Battery efficiency: </strong>Reduced network usage.</li><li><strong>Offline capability:</strong> Works without constant internet connection.</li><li><strong>Reliability: </strong>Leverages Google’s robust infrastructure.</li></ul>
+          <h4>TrustedTime API Compared to Server-side time validation<strong>🖥️</strong></h4>
+          <ul><li><strong>Latency</strong>: Immediate local computation.</li><li><strong>Availability: </strong>Works offline after initial sync.</li><li><strong>Cost:</strong> No server infrastructure required.</li><li><strong>Scalability:</strong> No server load concerns.</li></ul>
+          <h3>Understanding TrustedTime Architecture 🏗️</h3>
+          <h4>Google’s Infrastructure🌐</h4>
+          <p>TrustedTime utilizes Google’s global network of atomic clocks and time servers synchronized with GPS satellites to ensure accuracy and reliability. This infrastructure is distributed worldwide, providing high availability. Anomalies are continuously monitored, and the system is protected against potential attacks using cryptographic methods.</p>
+          <h4>Device-Level Integration📱</h4>
+          <p>On Android devices, TrustedTime operates through Google Play Services and integrates seamlessly with Android’s system-level time management. Time synchronization processes are efficiently managed via the device’s network stack. Additionally, power management optimizations are applied during synchronization to minimize battery consumption.</p>
+          <h4>Privacy and Security🔒</h4>
+          <p>TrustedTime is designed with privacy as a priority. It does not collect any personal user data; only time synchronization data is processed. Its network footprint is minimal, with synchronization operations being infrequent and lightweight. Most operations occur locally on the device, which benefits both speed and privacy. All communications with Google’s servers are encrypted, ensuring secure data transmission.</p>
+          <h3>When and Why to Use TrustedTime API 🎯</h3>
+          <h4>Essential Use Cases</h4>
+          <p><strong>Financial Applications</strong>💰</p>
+          <ul><li>Transaction timestamp validation.</li><li>Payment processing windows.</li><li>Audit trail integrity.</li><li>Regulatory compliance requirements.</li></ul>
+          <p><strong>Gaming and Entertainment</strong>🎮</p>
+          <ul><li>Daily reward systems.</li><li>Time-gated content access.</li><li>Leaderboard fairness.</li><li>Event scheduling.</li></ul>
+          <p><strong>Security and Authentication</strong>🔒</p>
+          <ul><li>Session timeout enforcement.</li><li>Time-based access controls.</li><li>Certificate validation.</li><li>Audit logging.</li></ul>
+          <p><strong>Business and Productivity</strong>📈</p>
+          <ul><li>Time tracking accuracy.</li><li>Scheduled task execution.</li><li>Calendar synchronization.</li><li>Workflow automation.</li></ul>
+          <h3>Implementation Decision Framework🧩</h3>
+          <p>Ask yourself these questions:</p>
+          <ol><li>Does your app make time-sensitive decisions?</li><li>Could users benefit from manipulating time?</li><li>Are there security implications to incorrect time?</li><li>Do you need accurate timestamps for compliance?</li><li>Is offline time accuracy important?</li></ol>
+          <p>If you answered “yes” to any of these, TrustedTime API is worth considering.</p>
+          <h3>Basic Implementation Overview 💻</h3>
+          <p>Here’s how TrustedTime API fits into your app architecture:</p>
+          <h4>1. Initialization</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+          // Initialize early in app lifecycle
+          class MyApplication : Application() {
+              var trustedTimeClient: TrustedTimeClient? = null
+
+              override fun onCreate() {
+                  super.onCreate()
+                  TrustedTime.createClient(this).addOnCompleteListener { task -&gt;
+                      if (task.isSuccessful) {
+                          trustedTimeClient = task.result
+                      }
+                  }
+              }
+          }</pre>
+          <h4>2. Usage Pattern</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+          // Get trusted time when needed
+          fun getCurrentTrustedTime(): Long? {
+              return app.trustedTimeClient?.computeCurrentUnixEpochMillis()
+          }
+
+          // Compare with system time
+          fun detectTimeManipulation(): Boolean {
+              val trustedTime = getCurrentTrustedTime() ?: return false
+              val systemTime = System.currentTimeMillis()
+              val difference = abs(trustedTime - systemTime)
+              return difference &gt; THRESHOLD_MS // e.g., 5000ms
+          }</pre>
+          <h4>3. Error Handling</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+          fun getReliableTime(): TimeResult {
+              return when (val trustedTime = getCurrentTrustedTime()) {
+                  null -&gt; TimeResult.Fallback(System.currentTimeMillis())
+                  else -&gt; TimeResult.Trusted(trustedTime)
+              }
+          }</pre>
+          <h3>Limitations and Considerations ⚖️</h3>
+          <h4>Technical Limitations⚙️</h4>
+          <ul><li>Requires Google Play Services: Not available on all Android devices (AOSP, some Chinese devices)</li><li>Internet dependency: Initial sync requires network connectivity</li><li>API level requirement: Android 5.0 (API 21) minimum</li><li>Accuracy bounds: Not atomic clock precision, includes error margins</li></ul>
+          <h4>Security Considerations🔐</h4>
+          <ul><li>Not foolproof: Advanced techniques can still manipulate time</li><li>Client-side validation: Should be combined with server-side checks for critical operations</li><li>Root access vulnerabilities: Rooted devices may bypass protections</li></ul>
+          <h4>Operational Considerations⚡</h4>
+          <ul><li>Sync delays: May not be immediately available after device startup</li><li>Battery impact: Minimal but present during sync operations</li><li>Regional restrictions: May have limited availability in some regions</li></ul>
+          <h3>Conclusion 🔚</h3>
+          <p>The TrustedTime API offers a practical and effective solution to time manipulation issues within the Android security ecosystem. While not perfect, it significantly enhances protection against time-based attacks and provides a better user experience compared to methods that require constant internet connectivity. It is essential for applications with time sensitivity, such as <strong>finance, gaming, and security</strong>. <strong>More secure than the system clock and more efficient than NTP</strong>, this API should be part of a layered security approach with proper setup, error handling, and fallback strategies — it complements, rather than replaces, server-side validation.</p>
+          <p>The real question isn’t whether your app needs accurate time — it’s whether you can afford the<strong> security and user experience risks </strong>of not using it.</p>
+          <h3>Hands-On Example 🛠️</h3>
+          <p>Want to see TrustedTime API in action? I’ve created a complete sample Android app that demonstrates all the concepts discussed in this article:</p>
+          <p>🔗<a href="https://github.com/MertYigit0/TrustedTimeAPISample" target="_blank" rel="noopener noreferrer"><strong>View Complete Sample Project on GitHub</strong></a></p>
+          <p>The sample app includes:</p>
+          <p>- ✅ Full TrustedTime implementation</p>
+          <p>- ✅ Modern Jetpack Compose UI</p>
+          <p>- ✅ Time tampering detection</p>
+          <p>- ✅ Error handling examples</p>
+          <p>- ✅ Best practices demonstration</p>
+          <p>Clone, build, and experiment with the code to get hands-on experience!</p>
+          <h4>Resources: 📚</h4>
+          <ul><li><a href="https://android-developers.googleblog.com/2025/02/trustedtime-api-introducing-reliable-approach-to-time-keeping-for-apps.html" target="_blank" rel="noopener noreferrer">android-developers.googleblog.com</a></li><li><a href="https://developers.google.com/android/reference/com/google/android/gms/time/TrustedTime" target="_blank" rel="noopener noreferrer">developers.google.com</a></li></ul>
+        `
+      }
+    ];
+
+    // ---- Language (i18n) ----
+    const translations = {
+      tr: {
+        langToggle: "Dili değiştir (English)",
+        themeToggle: "Temayı değiştir",
+        profilePhoto: "Profil Fotoğrafı",
+        bio: "Android geliştiricisiyim, yaratıcı mobil uygulamalar yapıyorum.<br>Yeni fırsatlara ve tekliflere açığım.",
+        githubTitle: "GitHub Profilim",
+        linkedinTitle: "LinkedIn Profilim",
+        mediumTitle: "Medium Yazılarım",
+        playTitle: "Play Store Uygulamalarım",
+        mailTitle: "E-posta Gönder",
+        cvTitle: "CV'imi İncele",
+        cvName: "CV İncele",
+        projectsTitle: "Projelerim",
+        skillsTitle: "Kullandığım Teknolojiler",
+        blogTitle: "Blog Yazılarım",
+        navProfile: "Profil",
+        navProjects: "Projeler",
+        navSkills: "Teknolojiler",
+        home: "Ana sayfa"
+      },
+      en: {
+        langToggle: "Change language (Türkçe)",
+        themeToggle: "Toggle theme",
+        profilePhoto: "Profile photo",
+        bio: "I'm an Android developer building creative mobile apps.<br>Open to new opportunities and offers.",
+        githubTitle: "My GitHub profile",
+        linkedinTitle: "My LinkedIn profile",
+        mediumTitle: "My Medium articles",
+        playTitle: "My Play Store apps",
+        mailTitle: "Send an email",
+        cvTitle: "View my CV",
+        cvName: "View CV",
+        projectsTitle: "Projects",
+        skillsTitle: "Tech Stack",
+        blogTitle: "Blog Posts",
+        navProfile: "Profile",
+        navProjects: "Projects",
+        navSkills: "Tech Stack",
+        home: "Home"
+      }
+    };
+
+    let currentLang = 'tr';
+    let currentBlogIndex = null;
+
+    function detectLanguage() {
+      const fromUrl = new URLSearchParams(location.search).get('lang');
+      if (fromUrl === 'tr' || fromUrl === 'en') return fromUrl;
+      try {
+        const saved = localStorage.getItem('lang');
+        if (saved === 'tr' || saved === 'en') return saved;
+      } catch (e) {}
+      const browserLangs = navigator.languages || [navigator.language || ''];
+      return browserLangs.some(l => l && l.toLowerCase().startsWith('tr')) ? 'tr' : 'en';
+    }
+
+    function getBlogPost(index) {
+      const tr = blogPosts[index];
+      if (currentLang === 'en' && blogPostsEn[index]) {
+        return { title: blogPostsEn[index].title, content: blogPostsEn[index].content, image: tr.image };
+      }
+      return tr;
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const dict = translations[lang];
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = dict[el.dataset.i18n];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        el.innerHTML = dict[el.dataset.i18nHtml];
+      });
+      document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.title = dict[el.dataset.i18nTitle];
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        el.alt = dict[el.dataset.i18nAlt];
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        el.setAttribute('aria-label', dict[el.dataset.i18nAriaLabel]);
+      });
+      document.querySelectorAll('[data-blog-title]').forEach(el => {
+        el.textContent = getBlogPost(Number(el.dataset.blogTitle)).title;
+      });
+
+      document.getElementById('lang-code').textContent = lang.toUpperCase();
+
+      // Re-render the open blog post in the new language
+      if (currentBlogIndex !== null) {
+        const post = getBlogPost(currentBlogIndex);
+        document.getElementById('blogPostTitle').textContent = post.title;
+        document.getElementById('blogPostText').innerHTML = post.content;
+      }
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'tr' ? 'en' : 'tr';
+      try { localStorage.setItem('lang', next); } catch (e) {}
+      applyLanguage(next);
+    }
+
+    applyLanguage(detectLanguage());
+
     // Blog post functions
     function openBlogPost(index) {
-      const post = blogPosts[index];
+      currentBlogIndex = index;
+      const post = getBlogPost(index);
       const blogGrid = document.getElementById('blogGrid');
       const blogPostContent = document.getElementById('blogPostContent');
       const blogPostTitle = document.getElementById('blogPostTitle');
@@ -729,6 +1095,7 @@ fun getReliableTime(): TimeResult {
     }
 
     function closeBlogPost() {
+      currentBlogIndex = null;
       const blogGrid = document.getElementById('blogGrid');
       const blogPostContent = document.getElementById('blogPostContent');
       const blogPostImage = document.getElementById('blogPostImage');
