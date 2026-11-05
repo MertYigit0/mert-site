@@ -22,7 +22,7 @@
         <div class="status-bar-right">
           <i class="fas fa-battery-full"></i>
           <div class="theme-toggle" onclick="toggleTheme()">
-            <i id="theme-icon" class="fas fa-moon"></i>
+            <i id="theme-icon" class="fas fa-sun"></i>
           </div>
         </div>
       </div>
@@ -169,8 +169,8 @@
           <h2 class="section-title">Blog Yazılarım</h2>
           <div class="blog-grid" id="blogGrid">
             <div class="blog-card" onclick="openBlogPost(0)">
-              <img src="misc/navigation3webp.webp" alt="Navigation 3" class="blog-image">
-              <h3 class="blog-title">Jetpack Navigation 3 ile Android'de Modern Navigasyon Yönetimi</h3>
+              <img src="misc/broadcastreceiver.webp" alt="Android BroadcastReceiver" class="blog-image">
+              <h3 class="blog-title">Android BroadcastReceiver: Temeller, Modern Kısıtlamalar ve En İyi Pratikler</h3>
             </div>
             <div class="blog-card" onclick="openBlogPost(1)">
               <img src="misc/http.jpg" alt="HTTP Client" class="blog-image">
@@ -352,120 +352,125 @@
     // Blog post data
     const blogPosts = [
       {
-        title: "Jetpack Navigation 3 ile Android'de Modern Navigasyon Yönetimi",
-       
+        title: "Android BroadcastReceiver: Temeller, Modern Kısıtlamalar ve En İyi Pratikler",
+        image: "misc/broadcastreceiver.webp",
         content: `
-          <p>Android uygulamalarında kullanıcıların ekranlar arasındaki geçişlerinin hızlı ve stabil olması kullanıcı deneyimini doğrudan etkiler. Google'ın Jetpack Navigation Component (Nav2) uzun süre Android navigasyonu için standart oldu. Ancak Compose'un yaygınlaşması ve modern ihtiyaçlar doğrultusunda, Navigation 3 (Nav3) kütüphanesi tamamen yeniden tasarlanarak ortaya çıktı.</p>
-          
-          <p>Bu yazıda Navigation 3'ün temelleri, nasıl kullanıldığı ve Android geliştiricisine sunduğu avantajları detaylı şekilde ele alacağız.</p>
-          
-          <h3>❓Navigation 3 Nedir ve Navigation 2'den Farkı Ne?</h3>
-          <p>Navigation 3, Android Jetpack'in yeni nesil navigasyon kütüphanesi olup, Jetpack Compose ile tam uyumlu ve tamamen Kotlin DSL tabanlıdır. Önceki Navigation 2'nin fragment ve XML odaklı, back stack yönetiminin sistem tarafından otomatik yapıldığı klasik yapısından farklı olarak, Navigation 3'te back stack tamamen geliştiricinin kontrolündedir; böylece özel animasyonlar, özelleştirilebilir back stack stratejileri ve state yönetimi çok daha esnek ve modern mimarilere uygun şekilde yapılabilir.</p>
-          
-          <h3>🛠️Navigation 3 Kullanımı: Temel Adımlar</h3>
-          
-          <h4>🔑1. Ekranları Temsil Eden NavKey Oluşturun</h4>
-          <p>Navigation 3'te her ekranı bir NavKey nesnesi ile temsil edersiniz. Bu nesneler @Serializable ve NavKey interface'ini implement etmek zorundadır.</p>
-          
-          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
-@Serializable
-data object ScreenHome : NavKey
+          <p>Android geliştirmede BroadcastReceiver, uygulamaların hem sistemden hem de diğer uygulamalardan gelen mesajları dinleyebilmesini sağlar. Şarj durumundan ağ değişikliklerine, cihazın açılmasından uygulama içi özel bildirimlere kadar pek çok olay için kullanılabilir.</p>
 
-@Serializable
-data object ScreenDetail : NavKey</pre>
-          
-          <h4>📦2. Back Stack'inizi Oluşturun ve Koruyun</h4>
-          <p>rememberNavBackStack fonksiyonu, back stack'inizi hem ekran döndürme gibi konfigürasyon değişikliklerinde hem de process death durumunda otomatik olarak korur. Bunun için back stack'teki her öğe NavKey arayüzünü uygulamalı ve @Serializable olmalıdır.</p>
-          
-          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
-val backStack = rememberNavBackStack(ScreenHome)</pre>
-          
-          <h4>📺3. Ekranları Gösterin</h4>
-          <p>NavDisplay composable'ı back stack'in tepe noktasındaki ekranı gösterir. Hangi ekranların nasıl gösterileceğini ise entryProvider ile belirtebilirsiniz.</p>
-          
-          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
-NavDisplay(
-    backStack = backStack,
-    onBack = { backStack.removeLastOrNull() },
-    entryProvider = entryProvider {
-        entry<ScreenHome> {
-            HomeScreen {
-                backStack.add(ScreenDetail)
-            }
-        }
-        entry<ScreenDetail> {
-            DetailScreen {
-                backStack.removeLastOrNull()
-            }
-        }
-    }
-)</pre>
-          
-          <h4>🎞️4. Animasyonları Ayarlayın</h4>
-          <p>transitionSpec, popTransitionSpec ve predictivePopTransitionSpec parametreleri ile hem global hem de ekran bazında animasyonları kolayca tanımlayabilirsiniz.</p>
-          
-          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
-NavDisplay(
-    backStack = backStack,
-    transitionSpec = {
-        slideInHorizontally(initialOffsetX = { it }) togetherWith
-        slideOutHorizontally(targetOffsetX = { -it })
-    },
-    popTransitionSpec = {
-        slideInHorizontally(initialOffsetX = { -it }) togetherWith
-        slideOutHorizontally(targetOffsetX = { it })
-    }
-)</pre>
-          
-          <p>Dilerseniz özel bir ekran için animasyonları metadata olarak da tanımlayabilirsiniz.</p>
-          
-          <h3>🖥️ Two Pane Desteği ile Modern Tablet Deneyimi</h3>
-          <p>Navigation 3 ile gelen önemli yeniliklerden biri de, Two Pane çift panel arayüzlerin Compose ile artık çok daha kolay ve esnek bir şekilde uygulanabilmesi. Özellikle tablet, katlanabilir veya yatay modda çalışan cihazlarda kullanıcıya ana liste ve detay ekranının aynı anda gösterilebilmesi, modern uygulamalarda çoğu zaman beklenti haline geldi.</p>
-          
-          <p>Navigation 3 ile Two Pane desteğini aşağıdaki gibi hızlıca uygulayabilirsiniz:</p>
-          
-          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
-val backStack = rememberNavBackStack(ProductList)
+          <p>Ancak Android 8.0 sonrası gelen kısıtlamalar, lifecycle yönetimi ve güvenlik konuları yüzünden BroadcastReceiver artık daha bilinçli kullanılmak zorunda. Bu yazıda modern Android'de BroadcastReceiver'ı doğru şekilde nasıl yönetebileceğimizi sade ama kapsamlı şekilde anlatıyorum.</p>
 
-NavDisplay(
-    backStack = backStack,
-    sceneStrategy = TwoPaneSceneStrategy<Any>(),
-    entryProvider = entryProvider {
-        entry<ProductList>(metadata = TwoPaneScene.twoPane()) {
-            ProductListScreen { product ->
-                backStack.add(ProductDetail(product))
-            }
-        }
-        entry<ProductDetail>(metadata = TwoPaneScene.twoPane()) { detail ->
-            ProductDetailScreen(detail.productId)
-        }
-    }
-)</pre>
-          
-          <p>Bu sayede, Navigation 3'te back stack'inizi kolayca ikiye ayırarak, sol panelde ana liste ekranı, sağ panelde ise seçili detay ekranı gösterebilirsiniz. Ekran boyutuna göre dinamik olarak geçiş yapmak ve kullanıcı deneyimini en iyi hale getirmek çok kolaylaşıyor. Üstelik bu mimaride "geri" tuşu, geçiş animasyonları ve durum yönetimi gibi detaylar, tek back stack üzerinden kontrol edildiği için kod karmaşıklığı minimumda tutuluyor.</p>
-          
-          <h3>🌟Navigation 3'ün Öne Çıkan Avantajları</h3>
+          <h3>📌 1. BroadcastReceiver Nedir?</h3>
+          <p>Kısaca: Sistem veya uygulamalar tarafından gönderilen mesajları dinlememizi sağlar.</p>
+          <p><strong>Örnek system broadcast'lar:</strong></p>
           <ul>
-            <li><strong>Tam Back Stack Kontrolü:</strong> Back stack tamamen sizin yönetiminizde. İsterseniz standart bir stack yapısı kullanabilir, isterseniz ihtiyaçlarınıza göre özel bir yapı oluşturabilirsiniz.</li>
-            <li><strong>Compose ile Tam Uyum:</strong> Jetpack Compose'un state yönetimi ve lifecycle sistemleri ile sorunsuz çalışır.</li>
-            <li><strong>Kolay Durum Koruma:</strong> rememberNavBackStack ile konfigürasyon değişikliklerinde veya uygulama kapandığında bile navigasyon durumunuz kaybolmaz.</li>
-            <li><strong>Güçlü Animasyon Desteği:</strong> Transition API ile her ekran için giriş/çıkış animasyonlarını belirleyebilir, hatta swipe-back gibi gesture destekleri de ekleyebilirsiniz.</li>
-            <li><strong>Karmaşıklığın Azalması:</strong> XML ve fragment karmaşasından kurtulup, tek tip Kotlin DSL yapısı kullanılır.</li>
+            <li>ACTION_BATTERY_LOW → Şarj azaldı</li>
+            <li>ACTION_POWER_CONNECTED → Cihaza şarj takıldı</li>
+            <li>ACTION_BOOT_COMPLETED → Cihaz açıldı</li>
+            <li>ACTION_AIRPLANE_MODE_CHANGED → Uçak modu değişti</li>
           </ul>
-          
-          <h3>✅Sonuç</h3>
-          <p>Navigation 3, modern Android uygulama geliştirme pratiklerine uygun, back stack kontrolü ve animasyonlarda özgürlük sağlayan, Compose ile mükemmel uyumlu yeni nesil navigasyon kütüphanesidir. Nav2'nin karmaşıklığını azaltıp, geliştiriciye tam kontrol vermesi sayesinde uygulamalarınızda navigasyon deneyimini üst seviyeye çıkarabilirsiniz.</p>
-          
-          <h3>🔗Örnek Proje</h3>
-          <p>Yukarıda anlattığımız Navigation 3 kullanımını içeren basit demo projesine <a href="https://github.com/MertYigit0/Navigation3Sample" target="_blank">GitHub üzerinden buradan</a> ulaşabilirsiniz.</p>
-          
-          <h3>⚠️Not</h3>
-          <p>Navigation 3 şu anda alpha aşamasında olup, bazı API'ler ilerleyen sürümlerde değişebilir. Bu yüzden projelerinizde kullanmadan önce dokümantasyonu takip etmek önemli.</p>
+          <p><strong>Örnek custom broadcast:</strong></p>
+          <ul>
+            <li>Uygulama içinde veri yenilendiğinde diğer component'lere haber vermek.</li>
+          </ul>
+
+          <h3>📌 2. BroadcastReceiver'ı Kaydetme Yöntemleri</h3>
+          <h4>1) Manifest-declared (Manifest'e yazılan receiver)</h4>
+          <ul>
+            <li>Uygulama kapalı olsa bile tetiklenir.</li>
+            <li>Boot Completed gibi bazı kritik olaylar için zorunludur.</li>
+            <li>Android 8.0 sonrası birçok <em>implicit broadcast</em> manifest'ten dinlenemez.</li>
+          </ul>
+          <p><strong>Avantaj:</strong> Uygulama kapalıyken bile çalışır.<br><strong>Dezavantaj:</strong> Kısıtlamalar ve güvenlik riskleri.</p>
+
+          <h4>2) Context-registered</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val receiver = object : BroadcastReceiver() {
+    override fun onReceive(c: Context, i: Intent) { }
+}
+
+registerReceiver(receiver, IntentFilter(Intent.ACTION_BATTERY_LOW))</pre>
+          <ul>
+            <li>Activity veya Application context ile kayıt yapılır.</li>
+            <li>Activity context ile kaydedersen sadece activity açıkken çalışır.</li>
+            <li>Application context ile kaydedersen uygulama açık olduğu sürece dinlemeye devam eder.</li>
+          </ul>
+          <p><strong>Avantaj:</strong> Daha kontrollü ve modern kullanım.<br><strong>Dikkat:</strong> unregisterReceiver() çağırmayı unutmamak gerekiyor, yoksa memory leak oluşabilir.</p>
+
+          <h3>📌 3. Normal vs Ordered Broadcast</h3>
+          <h4>Normal broadcast (sendBroadcast)</h4>
+          <ul>
+            <li>Tüm alıcılara aynı anda gider.</li>
+            <li>Sıralama yoktur.</li>
+            <li>Daha hızlıdır.</li>
+          </ul>
+          <h4>Ordered broadcast (sendOrderedBroadcast)</h4>
+          <ul>
+            <li>Her alıcıya sırayla gider.</li>
+            <li>Sıra <strong>priority</strong> ile belirlenir.</li>
+            <li>Bir alıcı yayını iptal edebilir veya sonucunu değiştirebilir.</li>
+          </ul>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+&lt;intent-filter android:priority="10"&gt;</pre>
+
+          <h3>📌 4. Android 8.0 Kısıtlamaları Neden Geldi?</h3>
+          <p>Android 8.0 (Oreo) sonrası manifest'te implicit broadcast dinlemek büyük ölçüde kısıtlandı.</p>
+          <p><strong>Sebep:</strong></p>
+          <ul>
+            <li><strong>Performans:</strong> Yüzlerce uygulamanın arka planda system broadcast dinlemesi cihazı inanılmaz yavaşlatıyordu.</li>
+            <li><strong>Güvenlik:</strong> Hassas bilgiler yanlış uygulamalara iletilebiliyordu.</li>
+          </ul>
+          <p><strong>Sonuç:</strong><br>Manifest'ten sadece <em>çok özel system broadcastlar</em> dinlenebilir.<br>Geri kalanlar için kod içinde receiver kaydı kullanılmalı.</p>
+
+          <h3>📌 5. BroadcastReceiver'da En Büyük Hata: Uzun İş Yapmak</h3>
+          <p>onReceive() <strong>main thread</strong> üzerinde çalışır ve kısa sürmelidir.</p>
+          <p>Yanlış:</p>
+          <ul>
+            <li>Ağ isteği yapmak</li>
+            <li>Ağır IO işlemleri</li>
+            <li>Büyük hesaplamalar</li>
+          </ul>
+          <p>Bu durum ANR'ye yol açabilir.</p>
+          <h4>Çözüm:</h4>
+          <h4>1) goAsync() kullanmak</h4>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+val pendingResult = goAsync()
+CoroutineScope(Dispatchers.IO).launch {
+    // uzun işlem
+    pendingResult.finish()
+}</pre>
+          <h4>2) JobScheduler ile işi planlamak</h4>
+          <p>Uzun süreli işler için en güvenli yöntem.</p>
+
+          <h3>📌 6. Güvenlik: exported ve permission Kullanımı</h3>
+          <h4>exported = true</h4>
+          <p>Diğer tüm uygulamalar sana broadcast gönderebilir.</p>
+          <p>Risk:</p>
+          <ul>
+            <li>Kötü niyetli uygulama sahte veri gönderebilir.</li>
+            <li>Hassas receiver'ların kötüye kullanılması mümkün.</li>
+          </ul>
+          <h4>Permission ile koruma</h4>
+          <p>Gönderici ve alıcı aynı izni paylaşmalıdır.</p>
+          <pre style="background: var(--md-sys-color-surface-variant); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0;">
+&lt;uses-permission android:name="com.example.SECURE_PERMISSION"/&gt;</pre>
+
+          <h3>📌 7. Özet: En İyi Pratikler</h3>
+          <ul>
+            <li>Manifest'te sadece zorunlu broadcast'ları tanımla.</li>
+            <li>Activity context ile receiver kaydediyorsan mutlaka unregister et.</li>
+            <li>Uzun işlemleri onReceive içinde yapma → goAsync() veya JobScheduler kullan.</li>
+            <li>Güvenlik için permission veya exported = false kullan.</li>
+            <li>Gereksiz broadcast dinlemekten kaçın.</li>
+          </ul>
+
+          <h3>✅ Sonuç</h3>
+          <p>BroadcastReceiver hâlâ Android'in önemli bir parçası ama modern Android'de doğru kullanımı bilmek kritik. Performans, güvenlik ve yaşam döngüsü yönetimi göz önünde tutulmazsa uygulama beklenmedik şekilde davranabilir, ANR alabilir veya arka planda boşa batarya tüketebilir.</p>
+          <p>Doğru uygulandığında ise hem sistem hem uygulama içi event yönetimi için çok güçlü bir araçtır.</p>
         `
       },
       {
         title: "Android Studio'da API Testi Artık Daha Kolay: HTTP Client Plugin",
-        image: "http.jpg",
+        image: "misc/http.jpg",
         content: `
           <p>Android geliştiricileri olarak API isteklerini test etmek için genellikle Postman, cURL veya benzeri dış aracılar kullanırız. Ancak Android Studio'nun son sürümleriyle birlikte gelen yeni bir özellik sayesinde bu işlemi doğrudan IDE üzerinden doğrudan yapabilirsiniz: HTTP Client Plugin.</p>
           
@@ -483,7 +488,7 @@ NavDisplay(
           <h3>İnternet İkonu ile Otomatik HTTP İsteği 🛠️</h3>
           <p>Android Studio'da editor penceresinde internet ikonuna (🌐) tıkladığınızda, IDE sizin için otomatik olarak bir .http dosyası oluşturur ve içine örnek bir istek ekler. Bu, HTTP isteklerinizi test etmeye başlamak için oldukça pratik bir yol sunar. Oluşturulan bu sayfada, isteği çalıştır butonuyla (▶️) kolayca test edebilir ve sonuçları aşağıda açılan pencerede anında görebilirsiniz.</p>
           
-          <img src="ide.png" alt="Android Studio HTTP Client" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; margin: 20px 0;">
+          <img src="misc/ide.png" alt="Android Studio HTTP Client" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; margin: 20px 0;">
           
           <h3>Sonuç 📌</h3>
           <p>Android Studio'nun yerleşik HTTP Client Plugin'i, geliştiriciler için büyük bir zaman kazandırıyor. Projeniz içinde kaldığınız yerden, farklı bir uygulama kullanmaya gerek kalmadan API testlerinizi yapabilir, çıktıları kaydedebilir ve hatalarınızı kolayca görebilirsiniz.</p>
@@ -497,7 +502,7 @@ NavDisplay(
       },
       {
         title: "Android TrustedTime API: Google'ın Cihaz Saati Manipülasyonuna Çözümü",
-        image: "trustedtime.jpg",
+        image: "misc/trustedtime.jpg",
         content: `
           <p>TrustedTime API nedir? 🕐</p>
           <p>Android cihazlarda sistem saati kullanıcılar tarafından kolayca değiştirilebilir ve bu durum uygulamalarda hile veya manipülasyona yol açabilir. Google'ın TrustedTime API'si, uygulamalara Google sunucularından güvenilir ve güvenli zaman bilgisi sağlayarak bu sorunu çözüyor ve cihaz saati manipülasyonunu ciddi şekilde zorlaştırıyor.</p>
